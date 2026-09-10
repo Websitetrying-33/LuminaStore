@@ -34,12 +34,10 @@
         </div>
         <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-neutral-600">
             <a href="#shop" class="hover:text-black transition">Shop All</a>
-            <a href="#best-sellers" class="hover:text-black transition">Best Sellers</a>
             <a href="#vip-club" class="hover:text-teal-700 transition font-semibold text-teal-600">✨ VIP Club</a>
-            <a href="#about" class="hover:text-black transition">Our Philosophy</a>
+            <a href="#" onclick="openTrackerModal()" class="hover:text-black transition flex items-center space-x-1"><span>📦</span><span>Track Order</span></a>
         </nav>
         <div class="flex items-center space-x-5 text-sm">
-            <button id="search-btn" class="hover:text-black">Search</button>
             <button id="cart-toggle-btn" class="bg-[#2D2A26] text-white px-4 py-2 rounded-full text-xs font-semibold hover:bg-neutral-700 transition flex items-center space-x-1.5">
                 <span>Cart</span>
                 <span id="cart-count" class="bg-teal-500 text-white px-1.5 py-0.5 rounded-full text-[10px]">0</span>
@@ -55,74 +53,52 @@
             <p class="text-neutral-600 text-base max-w-md">Formulated with clean, active botanical ingredients designed to nourish, hydrate, and protect your skin barrier every single day.</p>
             <div class="flex space-x-4 pt-2">
                 <a href="#shop" class="bg-[#2D2A26] text-white px-8 py-3 rounded-full text-sm font-medium hover:bg-neutral-700 transition">Shop Collection</a>
-                <a href="#vip-club" class="border border-neutral-400 text-neutral-800 px-8 py-3 rounded-full text-sm font-medium hover:border-black transition">Join VIP Club</a>
+                <button onclick="openTrackerModal()" class="border border-neutral-400 text-neutral-800 px-8 py-3 rounded-full text-sm font-medium hover:border-black transition">Track My Order</button>
             </div>
         </div>
         <div class="relative">
             <div class="bg-[#EFECE6] rounded-3xl overflow-hidden shadow-sm h-[400px] md:h-[500px] flex items-center justify-center">
-                <img src="https://images.unsplash.com/photo-1608248597359-974254823122?auto=format&fit=crop&w=800&q=80" alt="Lumina Skincare Products" class="w-full h-full object-cover">
+                <img src="https://images.unsplash.com/photo-1608248597359-974254823122?auto=format&fit=crop&w=800&q=80" alt="Lumina Skincare" class="w-full h-full object-cover">
             </div>
         </div>
     </section>
 
-    <!-- TRUST & CONVERSION BADGES SECTION -->
+    <!-- TRUST & CONVERSION BADGES -->
     <section class="max-w-7xl mx-auto px-6 py-10 border-y border-neutral-200 bg-white/50">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             <div class="flex flex-col items-center space-y-2">
                 <span class="text-2xl">🌿</span>
                 <h4 class="font-serif font-medium text-sm text-neutral-800">100% Organic & Cruelty-Free</h4>
-                <p class="text-[11px] text-neutral-500">Pure botanical extracts</p>
             </div>
             <div class="flex flex-col items-center space-y-2">
                 <span class="text-2xl">🚚</span>
                 <h4 class="font-serif font-medium text-sm text-neutral-800">Fast Nationwide Shipping</h4>
-                <p class="text-[11px] text-neutral-500">Delivered right to your door</p>
             </div>
             <div class="flex flex-col items-center space-y-2">
                 <span class="text-2xl">🔒</span>
                 <h4 class="font-serif font-medium text-sm text-neutral-800">Secure SSL Checkout</h4>
-                <p class="text-[11px] text-neutral-500">Encrypted and safe payments</p>
             </div>
             <div class="flex flex-col items-center space-y-2">
                 <span class="text-2xl">💳</span>
-                <h4 class="font-serif font-medium text-sm text-neutral-800">COD & GCash Accepted</h4>
-                <p class="text-[11px] text-neutral-500">Flexible local payment options</p>
+                <h4 class="font-serif font-medium text-sm text-neutral-800">COD, GCash & PayMaya</h4>
             </div>
         </div>
     </section>
 
-    <!-- VIP MEMBERSHIP PROMOTION BANNER -->
-    <section id="vip-club" class="max-w-7xl mx-auto px-6 py-12">
-        <div class="bg-gradient-to-r from-[#2D2A26] to-[#4A453F] rounded-3xl p-8 md:p-12 text-white flex flex-col md:flex-row justify-between items-center shadow-lg">
-            <div class="space-y-4 max-w-xl mb-6 md:mb-0">
-                <span class="bg-teal-500 text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">Exclusive Offer</span>
-                <h2 class="text-3xl font-serif">Subscribe to Lumina VIP & Save 20%</h2>
-                <p class="text-neutral-300 text-sm">Join our membership program to get free express shipping, early access to new product drops, and a surprise gift on your birthday.</p>
-            </div>
-            <div class="w-full md:w-auto flex flex-col sm:flex-row gap-3">
-                <input type="email" placeholder="Enter your email address" class="px-5 py-3 rounded-full text-neutral-800 text-sm focus:outline-none min-w-[260px]">
-                <button onclick="showToast('Thank you for subscribing to Lumina VIP!')" class="bg-teal-500 hover:bg-teal-600 text-white font-semibold px-8 py-3 rounded-full text-sm transition">Subscribe Now</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- PRODUCT CATALOG SECTION -->
+    <!-- PRODUCT CATALOG -->
     <section id="shop" class="max-w-7xl mx-auto px-6 py-16">
         <div class="flex justify-between items-end mb-10">
             <div>
                 <h2 class="text-2xl md:text-3xl font-serif text-[#2D2A26]">Best Selling Essentials</h2>
                 <p class="text-neutral-500 text-sm mt-1">Carefully crafted formulas for glowing skin.</p>
             </div>
-            <div class="text-xs font-semibold uppercase tracking-wider text-neutral-600 cursor-pointer hover:text-black">View All Products →</div>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            <!-- Product 1 -->
             <div class="bg-white p-4 rounded-2xl shadow-sm border border-neutral-100 flex flex-col justify-between group">
                 <div>
                     <div class="bg-[#EFECE6] rounded-xl overflow-hidden h-64 mb-4 relative">
                         <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=500&q=80" alt="Serum" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-                        <span class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-[10px] font-semibold px-2.5 py-1 rounded-full uppercase">Bestseller</span>
                     </div>
                     <h3 class="font-serif font-medium text-neutral-800">Hydrating Botanical Serum</h3>
                     <p class="text-xs text-neutral-500 mt-0.5">Hyaluronic Acid & Niacinamide</p>
@@ -130,7 +106,6 @@
                 </div>
                 <button onclick="addToCart('Hydrating Botanical Serum', 48.00)" class="mt-4 w-full bg-[#2D2A26] hover:bg-neutral-700 text-white py-2.5 rounded-xl text-xs font-semibold transition">Add to Cart</button>
             </div>
-            <!-- Product 2 -->
             <div class="bg-white p-4 rounded-2xl shadow-sm border border-neutral-100 flex flex-col justify-between group">
                 <div>
                     <div class="bg-[#EFECE6] rounded-xl overflow-hidden h-64 mb-4 relative">
@@ -142,7 +117,6 @@
                 </div>
                 <button onclick="addToCart('Barrier Repair Moisturizer', 42.00)" class="mt-4 w-full bg-[#2D2A26] hover:bg-neutral-700 text-white py-2.5 rounded-xl text-xs font-semibold transition">Add to Cart</button>
             </div>
-            <!-- Product 3 -->
             <div class="bg-white p-4 rounded-2xl shadow-sm border border-neutral-100 flex flex-col justify-between group">
                 <div>
                     <div class="bg-[#EFECE6] rounded-xl overflow-hidden h-64 mb-4 relative">
@@ -154,12 +128,10 @@
                 </div>
                 <button onclick="addToCart('Gentle Gel Cleanser', 28.00)" class="mt-4 w-full bg-[#2D2A26] hover:bg-neutral-700 text-white py-2.5 rounded-xl text-xs font-semibold transition">Add to Cart</button>
             </div>
-            <!-- Product 4 -->
             <div class="bg-white p-4 rounded-2xl shadow-sm border border-neutral-100 flex flex-col justify-between group">
                 <div>
                     <div class="bg-[#EFECE6] rounded-xl overflow-hidden h-64 mb-4 relative">
                         <img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=500&q=80" alt="Sunscreen" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-                        <span class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-[10px] font-semibold px-2.5 py-1 rounded-full uppercase">New</span>
                     </div>
                     <h3 class="font-serif font-medium text-neutral-800">Daily Mineral Sunscreen</h3>
                     <p class="text-xs text-neutral-500 mt-0.5">Invisible Zinc Shield SPF 50</p>
@@ -183,8 +155,12 @@
                 <!-- CART VIEW -->
                 <div id="cart-view-section" class="flex-1 flex flex-col overflow-hidden">
                     <div id="cart-items-container" class="flex-1 overflow-y-auto p-6 space-y-4"></div>
-                    <div class="p-6 border-t bg-[#FAF8F5] space-y-4">
-                        <div class="flex justify-between items-center text-sm font-semibold">
+                    <div class="p-6 border-t bg-[#FAF8F5] space-y-3">
+                        <div class="flex items-center space-x-2">
+                            <input type="text" id="promo-code" placeholder="Promo code (try LUMINA10)" class="border border-neutral-200 px-3 py-2 rounded-xl text-xs flex-1 uppercase">
+                            <button onclick="applyPromo()" class="bg-neutral-800 text-white px-4 py-2 rounded-xl text-xs font-semibold hover:bg-black transition">Apply</button>
+                        </div>
+                        <div class="flex justify-between items-center text-sm font-semibold pt-2 border-t">
                             <span>Subtotal:</span>
                             <span id="cart-subtotal">$0.00</span>
                         </div>
@@ -197,7 +173,7 @@
                     <h3 class="text-xs font-bold uppercase tracking-wider text-neutral-500">Shipping Information</h3>
                     <input type="text" id="ship-name" placeholder="Full Name" class="border border-neutral-200 p-3 rounded-xl text-sm focus:outline-none focus:border-teal-500">
                     <input type="text" id="ship-phone" placeholder="Phone Number (e.g. 09123456789)" class="border border-neutral-200 p-3 rounded-xl text-sm focus:outline-none focus:border-teal-500">
-                    <textarea id="ship-address" placeholder="Complete Delivery Address (Street, Barangay, City)" class="border border-neutral-200 p-3 rounded-xl text-sm focus:outline-none focus:border-teal-500 h-20 resize-none"></textarea>
+                    <textarea id="ship-address" placeholder="Complete Delivery Address" class="border border-neutral-200 p-3 rounded-xl text-sm focus:outline-none focus:border-teal-500 h-20 resize-none"></textarea>
 
                     <h3 class="text-xs font-bold uppercase tracking-wider text-neutral-500 pt-2">Payment Method</h3>
                     <div class="space-y-2">
@@ -219,10 +195,8 @@
                     <div id="qr-container" class="hidden text-center bg-neutral-50 p-4 rounded-xl border border-dashed border-neutral-300 space-y-2">
                         <p id="qr-label" class="text-xs font-semibold text-neutral-700">Scan to Pay via GCash</p>
                         <div class="w-32 h-32 mx-auto bg-white p-2 rounded-lg shadow-sm border flex items-center justify-center">
-                            <!-- Placeholder QR Code Image -->
-                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=LuminaSkincarePayment" alt="Payment QR Code" class="w-full h-full object-contain">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=LuminaSkincarePayment" alt="QR Code" class="w-full h-full object-contain">
                         </div>
-                        <p class="text-[10px] text-neutral-500">Please scan using your app and attach proof upon delivery.</p>
                     </div>
 
                     <div class="pt-4 flex space-x-3">
@@ -231,6 +205,49 @@
                     </div>
                 </div>
 
+            </div>
+        </div>
+    </div>
+
+    <!-- ORDER TRACKING MODAL -->
+    <div id="tracker-modal" class="fixed inset-0 z-50 flex items-center justify-center hidden bg-black/50 backdrop-blur-sm p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl space-y-6 relative">
+            <button onclick="closeTrackerModal()" class="absolute top-5 right-5 text-neutral-400 hover:text-black font-bold text-xl">×</button>
+            <h2 class="font-serif text-xl font-bold text-[#2D2A26]">Live Order Tracking</h2>
+            
+            <div class="space-y-3">
+                <input type="text" id="track-id-input" placeholder="Enter Order ID (e.g. LUM-8832)" class="border border-neutral-200 p-3 rounded-xl text-sm w-full focus:outline-none">
+                <button onclick="trackOrder()" class="w-full bg-[#2D2A26] text-white py-3 rounded-xl font-semibold text-sm hover:bg-neutral-700 transition">Track Package</button>
+            </div>
+
+            <div id="tracking-result" class="hidden space-y-4 pt-2 border-t">
+                <div class="flex justify-between items-center text-xs bg-teal-50 text-teal-800 p-3 rounded-xl font-semibold">
+                    <span>Status: Out for Delivery</span>
+                    <span>ETA: Today, 4:00 PM</span>
+                </div>
+                <!-- Timeline Progress -->
+                <div class="space-y-4 text-xs">
+                    <div class="flex items-center space-x-3">
+                        <span class="w-5 h-5 bg-teal-500 text-white rounded-full flex items-center justify-center text-[10px]">✓</span>
+                        <div><p class="font-bold">Order Confirmed</p><p class="text-neutral-400">Payment verified via GCash/COD</p></div>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <span class="w-5 h-5 bg-teal-500 text-white rounded-full flex items-center justify-center text-[10px]">✓</span>
+                        <div><p class="font-bold">Packed & Dispatched</p><p class="text-neutral-400">Lumina Fulfillment Hub, Manila</p></div>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <span class="w-5 h-5 bg-teal-500 text-white rounded-full flex items-center justify-center text-[10px]">●</span>
+                        <div><p class="font-bold text-teal-600">Out for Delivery</p><p class="text-neutral-400">Courier is on the way to your address</p></div>
+                    </div>
+                </div>
+
+                <!-- SIMULATED LIVE MAP -->
+                <div class="rounded-2xl overflow-hidden h-40 bg-neutral-100 border relative flex items-center justify-center">
+                    <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=600&q=80" alt="Map" class="w-full h-full object-cover opacity-80">
+                    <div class="absolute bg-white/90 backdrop-blur-sm px-4 py-2 rounded-xl shadow-md text-center">
+                        <p class="text-[11px] font-bold text-teal-600">📍 Rider is 1.2 km away from your location</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -250,6 +267,7 @@
     <script>
         let cart = [];
         let currentCurrency = 'USD';
+        let discountMultiplier = 1.0;
         const conversionRate = 56.50;
 
         const currencySelector = document.getElementById('currency-selector');
@@ -258,7 +276,6 @@
         const cartBackdrop = document.getElementById('cart-backdrop');
         const cartDrawer = document.getElementById('cart-drawer');
 
-        // Toast Notification Function
         function showToast(message) {
             const toast = document.getElementById('toast-notification');
             document.getElementById('toast-message').innerText = message;
@@ -268,7 +285,6 @@
             }, 3000);
         }
 
-        // Toggle Cart Drawer
         cartToggleBtn.addEventListener('click', () => {
             document.getElementById('cart-view-section').classList.remove('hidden');
             document.getElementById('checkout-view-section').classList.add('hidden');
@@ -279,7 +295,6 @@
         cartCloseBtn.addEventListener('click', () => cartDrawer.classList.add('hidden'));
         cartBackdrop.addEventListener('click', () => cartDrawer.classList.add('hidden'));
 
-        // Currency Converter Logic
         currencySelector.addEventListener('change', (e) => {
             currentCurrency = e.target.value;
             updatePricesDisplay();
@@ -303,7 +318,6 @@
             });
         }
 
-        // Add to Cart Logic
         function addToCart(name, priceUSD) {
             const existingItem = cart.find(item => item.name === name);
             if (existingItem) {
@@ -347,7 +361,8 @@
                 container.appendChild(div);
             });
 
-            document.getElementById('cart-subtotal').innerText = formatPrice(subtotalUSD);
+            const finalTotal = subtotalUSD * discountMultiplier;
+            document.getElementById('cart-subtotal').innerText = formatPrice(finalTotal);
         }
 
         function removeItem(index) {
@@ -355,7 +370,17 @@
             updateCartUI();
         }
 
-        // Checkout Flow Navigation
+        function applyPromo() {
+            const code = document.getElementById('promo-code').value.trim().toUpperCase();
+            if (code === 'LUMINA10') {
+                discountMultiplier = 0.9;
+                renderCart();
+                showToast("Promo code applied! 10% OFF");
+            } else {
+                alert("Invalid promo code. Try LUMINA10");
+            }
+        }
+
         function openCheckoutForm() {
             if (cart.length === 0) {
                 alert("Your cart is empty!");
@@ -393,15 +418,35 @@
                 return;
             }
 
-            alert(`Thank you, ${name}! Your order has been placed successfully and will be shipped to ${address}.`);
+            const orderId = "LUM-" + Math.floor(1000 + Math.random() * 9000);
+            alert(`Order Successful! Your Order ID is ${orderId}. You can now track your delivery using this ID.`);
             cart = [];
             updateCartUI();
             cartDrawer.classList.add('hidden');
             backToCart();
-            // Clear inputs
+            
             document.getElementById('ship-name').value = '';
             document.getElementById('ship-phone').value = '';
             document.getElementById('ship-address').value = '';
+            document.getElementById('track-id-input').value = orderId;
+            openTrackerModal();
+        }
+
+        function openTrackerModal() {
+            document.getElementById('tracker-modal').classList.remove('hidden');
+        }
+
+        function closeTrackerModal() {
+            document.getElementById('tracker-modal').classList.add('hidden');
+        }
+
+        function trackOrder() {
+            const id = document.getElementById('track-id-input').value.trim();
+            if (!id) {
+                alert("Please enter a valid Order ID.");
+                return;
+            }
+            document.getElementById('tracking-result').classList.remove('hidden');
         }
     </script>
 
