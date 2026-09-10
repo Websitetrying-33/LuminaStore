@@ -7,7 +7,7 @@
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-[#FAF8F5] font-sans antialiased text-neutral-800">
+<body class="bg-[#FAF8F5] font-sans antialiased text-neutral-800 scroll-smooth">
 
     <!-- TOAST NOTIFICATION POP-UP -->
     <div id="toast-notification" class="fixed bottom-6 right-6 z-50 bg-[#2D2A26] text-white px-5 py-3 rounded-2xl shadow-xl transform translate-y-24 opacity-0 transition-all duration-300 flex items-center space-x-3 text-sm">
@@ -85,6 +85,21 @@
         </div>
     </section>
 
+    <!-- VIP MEMBERSHIP PROMOTION BANNER -->
+    <section id="vip-club" class="max-w-7xl mx-auto px-6 py-12">
+        <div class="bg-gradient-to-r from-[#2D2A26] to-[#4A453F] rounded-3xl p-8 md:p-12 text-white flex flex-col md:flex-row justify-between items-center shadow-lg">
+            <div class="space-y-4 max-w-xl mb-6 md:mb-0">
+                <span class="bg-teal-500 text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">Exclusive Offer</span>
+                <h2 class="text-3xl font-serif">Subscribe to Lumina VIP & Save 20%</h2>
+                <p class="text-neutral-300 text-sm">Join our membership program to get free express shipping, early access to new product drops, and a surprise gift on your birthday.</p>
+            </div>
+            <div class="w-full md:w-auto flex flex-col sm:flex-row gap-3">
+                <input type="email" placeholder="Enter your email address" class="px-5 py-3 rounded-full text-neutral-800 text-sm focus:outline-none min-w-[260px]">
+                <button onclick="showToast('Thank you for subscribing to Lumina VIP!')" class="bg-teal-500 hover:bg-teal-600 text-white font-semibold px-8 py-3 rounded-full text-sm transition">Subscribe Now</button>
+            </div>
+        </div>
+    </section>
+
     <!-- PRODUCT CATALOG -->
     <section id="shop" class="max-w-7xl mx-auto px-6 py-16">
         <div class="flex justify-between items-end mb-10">
@@ -111,7 +126,7 @@
             <div class="bg-white p-4 rounded-2xl shadow-sm border border-neutral-100 flex flex-col justify-between group">
                 <div>
                     <div class="bg-[#EFECE6] rounded-xl overflow-hidden h-64 mb-4 relative">
-                        <img src="https://images.unsplash.com/photo-1608248597359-974254823122?auto=format&fit=crop&w=500&q=80" alt="Cream" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                        <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=500&q=80" alt="Cream" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
                     </div>
                     <h3 class="font-serif font-medium text-neutral-800">Barrier Repair Moisturizer</h3>
                     <p class="text-xs text-neutral-500 mt-0.5">Ceramides & Peptides</p>
@@ -179,11 +194,11 @@
                 </div>
                 <button onclick="addToCart('Nourishing Lip Mask', 22.00)" class="mt-4 w-full bg-[#2D2A26] hover:bg-neutral-700 text-white py-2.5 rounded-xl text-xs font-semibold transition">Add to Cart</button>
             </div>
-            <!-- Product 8 -->
+            <!-- Product 8 (Clay Mask Fixed) -->
             <div class="bg-white p-4 rounded-2xl shadow-sm border border-neutral-100 flex flex-col justify-between group">
                 <div>
                     <div class="bg-[#EFECE6] rounded-xl overflow-hidden h-64 mb-4 relative">
-                        <img src="https://images.unsplash.com/photo-1512290900722-9a70f8a85d39?auto=format&fit=crop&w=500&q=80" alt="Clay Mask" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                        <img src="https://images.unsplash.com/photo-1567306226416-28f0efdc8849?auto=format&fit=crop&w=500&q=80" alt="Clay Mask" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
                     </div>
                     <h3 class="font-serif font-medium text-neutral-800">Clarifying Clay Mask</h3>
                     <p class="text-xs text-neutral-500 mt-0.5">Kaolin Clay & Tea Tree</p>
