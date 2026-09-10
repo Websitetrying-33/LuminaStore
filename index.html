@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,19 +22,22 @@
     </div>
 
     <!-- HEADER / NAVIGATION -->
-    <header class="sticky top-0 bg-[#FAF8F5]/95 backdrop-blur-md z-50 border-b border-neutral-200 px-8 py-4 flex justify-between items-center">
+    <header class="sticky top-0 bg-[#FAF8F5]/95 backdrop-blur-md z-45 border-b border-neutral-200 px-8 py-4 flex justify-between items-center">
         <div class="flex items-center space-x-2">
             <span class="text-xl font-serif tracking-widest uppercase font-bold text-[#2D2A26]">Lumina</span>
         </div>
         <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-neutral-600">
             <a href="#shop" class="hover:text-black transition">Shop All</a>
             <a href="#best-sellers" class="hover:text-black transition">Best Sellers</a>
-            <a href="#about" class="hover:text-black transition">Our Philosophy</a>
             <a href="#vip-club" class="hover:text-teal-700 transition font-semibold text-teal-600">✨ VIP Club</a>
+            <a href="#about" class="hover:text-black transition">Our Philosophy</a>
         </nav>
         <div class="flex items-center space-x-5 text-sm">
-            <button id="search-btn" class="hover:text-black cursor-pointer">Search</button>
-            <button id="cart-btn" class="bg-[#2D2A26] text-white px-4 py-2 rounded-full text-xs font-semibold hover:bg-neutral-700 transition cursor-pointer">Cart (0)</button>
+            <button id="search-btn" class="hover:text-black">Search</button>
+            <button id="cart-toggle-btn" class="bg-[#2D2A26] text-white px-4 py-2 rounded-full text-xs font-semibold hover:bg-neutral-700 transition flex items-center space-x-1.5">
+                <span>Cart</span>
+                <span id="cart-count" class="bg-teal-500 text-white px-1.5 py-0.5 rounded-full text-[10px]">0</span>
+            </button>
         </div>
     </header>
 
@@ -45,91 +48,39 @@
             <h1 class="text-4xl md:text-6xl font-serif text-[#2D2A26] leading-tight">Reveal Your Natural Glow</h1>
             <p class="text-neutral-600 text-base max-w-md">Formulated with clean, active botanical ingredients designed to nourish, hydrate, and protect your skin barrier every single day.</p>
             <div class="flex space-x-4 pt-2">
-                <a href="#shop" class="bg-[#2D2A26] text-white px-8 py-3 rounded-full text-sm font-medium hover:bg-neutral-700 transition text-center">Shop Collection</a>
-                <a href="#vip-club" class="border border-neutral-400 text-neutral-800 px-8 py-3 rounded-full text-sm font-medium hover:border-black transition text-center">Join VIP Club</a>
+                <a href="#shop" class="bg-[#2D2A26] text-white px-8 py-3 rounded-full text-sm font-medium hover:bg-neutral-700 transition">Shop Collection</a>
+                <a href="#vip-club" class="border border-neutral-400 text-neutral-800 px-8 py-3 rounded-full text-sm font-medium hover:border-black transition">Join VIP Club</a>
             </div>
         </div>
         <div class="relative">
             <div class="bg-[#EFECE6] rounded-3xl overflow-hidden shadow-sm h-[400px] md:h-[500px] flex items-center justify-center">
-                <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=800&q=80" alt="Lumina Skincare Bottle" class="w-full h-full object-cover">
+                <img src="https://images.unsplash.com/photo-1608248597359-974254823122?auto=format&fit=crop&w=800&q=80" alt="Lumina Skincare Products" class="w-full h-full object-cover">
             </div>
         </div>
     </section>
 
-    <!-- PHILOSOPHY SECTION (Our Philosophy) -->
-    <section id="about" class="bg-[#F3EFEA] py-20 px-6 my-10">
-        <div class="max-w-4xl mx-auto text-center space-y-6">
-            <span class="text-xs uppercase tracking-widest text-neutral-500 font-semibold">Our Philosophy</span>
-            <h2 class="text-3xl md:text-4xl font-serif text-[#2D2A26]">Clean Beauty Without Compromise</h2>
-            <p class="text-neutral-600 text-base leading-relaxed">
-                At Lumina, we believe that skincare should be simple, effective, and sustainable. Every formula is carefully crafted using ethically sourced botanicals, free from parabens, sulfates, and synthetic fragrances, ensuring your skin receives only the purest nourishment it deserves.
-            </p>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-8 text-left">
-                <div class="bg-white p-6 rounded-2xl shadow-sm">
-                    <h3 class="font-serif font-bold text-lg mb-2 text-[#2D2A26]">100% Cruelty-Free</h3>
-                    <p class="text-xs text-neutral-500">Never tested on animals, certified Leaping Bunny partner.</p>
-                </div>
-                <div class="bg-white p-6 rounded-2xl shadow-sm">
-                    <h3 class="font-serif font-bold text-lg mb-2 text-[#2D2A26]">Sustainable Packaging</h3>
-                    <p class="text-xs text-neutral-500">Housed in recyclable glass and post-consumer recycled plastics.</p>
-                </div>
-                <div class="bg-white p-6 rounded-2xl shadow-sm">
-                    <h3 class="font-serif font-bold text-lg mb-2 text-[#2D2A26]">Clinically Proven</h3>
-                    <p class="text-xs text-neutral-500">Rigorous dermatological testing for sensitive skin types.</p>
-                </div>
+    <!-- TRUST & CONVERSION BADGES SECTION -->
+    <section class="max-w-7xl mx-auto px-6 py-10 border-y border-neutral-200 bg-white/50">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            <div class="flex flex-col items-center space-y-2">
+                <span class="text-2xl">🌿</span>
+                <h4 class="font-serif font-medium text-sm text-neutral-800">100% Organic & Cruelty-Free</h4>
+                <p class="text-[11px] text-neutral-500">Pure botanical extracts</p>
             </div>
-        </div>
-    </section>
-
-    <!-- BEST SELLERS & PRODUCT CATALOG SECTION -->
-    <section id="shop" class="max-w-7xl mx-auto px-6 py-16">
-        <div id="best-sellers" class="flex justify-between items-end mb-10">
-            <div>
-                <h2 class="text-2xl md:text-3xl font-serif text-[#2D2A26]">Best Selling Essentials</h2>
-                <p class="text-neutral-500 text-sm mt-1">Carefully crafted formulas for glowing skin.</p>
+            <div class="flex flex-col items-center space-y-2">
+                <span class="text-2xl">🚚</span>
+                <h4 class="font-serif font-medium text-sm text-neutral-800">Fast Nationwide Shipping</h4>
+                <p class="text-[11px] text-neutral-500">Delivered right to your door</p>
             </div>
-            <div class="text-xs font-semibold uppercase tracking-wider text-neutral-600 cursor-pointer hover:text-black">View All Products →</div>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            <!-- Product 1 -->
-            <div class="group cursor-pointer">
-                <div class="bg-[#EFECE6] rounded-2xl overflow-hidden h-72 mb-4 relative">
-                    <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=500&q=80" alt="Hydrating Serum" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-                    <span class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-[10px] font-semibold px-2.5 py-1 rounded-full uppercase">Bestseller</span>
-                </div>
-                <h3 class="font-serif font-medium text-neutral-800">Hydrating Botanical Serum</h3>
-                <p class="text-xs text-neutral-500 mt-0.5">Hyaluronic Acid & Niacinamide</p>
-                <p class="font-semibold text-sm mt-2 text-[#2D2A26] product-price" data-usd="48.00">$48.00</p>
+            <div class="flex flex-col items-center space-y-2">
+                <span class="text-2xl">🔒</span>
+                <h4 class="font-serif font-medium text-sm text-neutral-800">Secure SSL Checkout</h4>
+                <p class="text-[11px] text-neutral-500">Encrypted and safe payments</p>
             </div>
-            <!-- Product 2 -->
-            <div class="group cursor-pointer">
-                <div class="bg-[#EFECE6] rounded-2xl overflow-hidden h-72 mb-4 relative">
-                    <img src="https://images.unsplash.com/photo-1608248597359-974254823122?auto=format&fit=crop&w=500&q=80" alt="Moisturizer" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-                    <span class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-[10px] font-semibold px-2.5 py-1 rounded-full uppercase">Popular</span>
-                </div>
-                <h3 class="font-serif font-medium text-neutral-800">Barrier Repair Moisturizer</h3>
-                <p class="text-xs text-neutral-500 mt-0.5">Ceramides & Peptides</p>
-                <p class="font-semibold text-sm mt-2 text-[#2D2A26] product-price" data-usd="42.00">$42.00</p>
-            </div>
-            <!-- Product 3 -->
-            <div class="group cursor-pointer">
-                <div class="bg-[#EFECE6] rounded-2xl overflow-hidden h-72 mb-4 relative">
-                    <img src="https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?auto=format&fit=crop&w=500&q=80" alt="Gel Cleanser" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-                </div>
-                <h3 class="font-serif font-medium text-neutral-800">Gentle Gel Cleanser</h3>
-                <p class="text-xs text-neutral-500 mt-0.5">Green Tea & Chamomile</p>
-                <p class="font-semibold text-sm mt-2 text-[#2D2A26] product-price" data-usd="28.00">$28.00</p>
-            </div>
-            <!-- Product 4 -->
-            <div class="group cursor-pointer">
-                <div class="bg-[#EFECE6] rounded-2xl overflow-hidden h-72 mb-4 relative">
-                    <img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=500&q=80" alt="Sunscreen" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-                    <span class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-[10px] font-semibold px-2.5 py-1 rounded-full uppercase">New</span>
-                </div>
-                <h3 class="font-serif font-medium text-neutral-800">Daily Mineral Sunscreen SPF 50</h3>
-                <p class="text-xs text-neutral-500 mt-0.5">Invisible Zinc Shield</p>
-                <p class="font-semibold text-sm mt-2 text-[#2D2A26] product-price" data-usd="36.00">$36.00</p>
+            <div class="flex flex-col items-center space-y-2">
+                <span class="text-2xl">💳</span>
+                <h4 class="font-serif font-medium text-sm text-neutral-800">COD & GCash Accepted</h4>
+                <p class="text-[11px] text-neutral-500">Flexible local payment options</p>
             </div>
         </div>
     </section>
@@ -144,10 +95,97 @@
             </div>
             <div class="w-full md:w-auto flex flex-col sm:flex-row gap-3">
                 <input type="email" placeholder="Enter your email address" class="px-5 py-3 rounded-full text-neutral-800 text-sm focus:outline-none min-w-[260px]">
-                <button onclick="alert('Thank you for subscribing to Lumina VIP! Check your email for your 20% discount voucher.')" class="bg-teal-500 hover:bg-teal-600 text-white font-semibold px-8 py-3 rounded-full text-sm transition cursor-pointer">Subscribe Now</button>
+                <button onclick="alert('Thank you for subscribing to Lumina VIP! Check your email for your 20% discount voucher.')" class="bg-teal-500 hover:bg-teal-600 text-white font-semibold px-8 py-3 rounded-full text-sm transition">Subscribe Now</button>
             </div>
         </div>
     </section>
+
+    <!-- PRODUCT CATALOG SECTION -->
+    <section id="shop" class="max-w-7xl mx-auto px-6 py-16">
+        <div class="flex justify-between items-end mb-10">
+            <div>
+                <h2 class="text-2xl md:text-3xl font-serif text-[#2D2A26]">Best Selling Essentials</h2>
+                <p class="text-neutral-500 text-sm mt-1">Carefully crafted formulas for glowing skin.</p>
+            </div>
+            <div class="text-xs font-semibold uppercase tracking-wider text-neutral-600 cursor-pointer hover:text-black">View All Products →</div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Product 1 -->
+            <div class="bg-white p-4 rounded-2xl shadow-sm border border-neutral-100 flex flex-col justify-between group">
+                <div>
+                    <div class="bg-[#EFECE6] rounded-xl overflow-hidden h-64 mb-4 relative">
+                        <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=500&q=80" alt="Serum" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                        <span class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-[10px] font-semibold px-2.5 py-1 rounded-full uppercase">Bestseller</span>
+                    </div>
+                    <h3 class="font-serif font-medium text-neutral-800">Hydrating Botanical Serum</h3>
+                    <p class="text-xs text-neutral-500 mt-0.5">Hyaluronic Acid & Niacinamide</p>
+                    <p class="font-semibold text-sm mt-2 text-[#2D2A26] product-price" data-usd="48.00" data-usd-val="48.00">$48.00</p>
+                </div>
+                <button onclick="addToCart('Hydrating Botanical Serum', 48.00)" class="mt-4 w-full bg-[#2D2A26] hover:bg-neutral-700 text-white py-2.5 rounded-xl text-xs font-semibold transition">Add to Cart</button>
+            </div>
+            <!-- Product 2 -->
+            <div class="bg-white p-4 rounded-2xl shadow-sm border border-neutral-100 flex flex-col justify-between group">
+                <div>
+                    <div class="bg-[#EFECE6] rounded-xl overflow-hidden h-64 mb-4 relative">
+                        <img src="https://images.unsplash.com/photo-1608248597359-974254823122?auto=format&fit=crop&w=500&q=80" alt="Cream" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                    </div>
+                    <h3 class="font-serif font-medium text-neutral-800">Barrier Repair Moisturizer</h3>
+                    <p class="text-xs text-neutral-500 mt-0.5">Ceramides & Peptides</p>
+                    <p class="font-semibold text-sm mt-2 text-[#2D2A26] product-price" data-usd="42.00" data-usd-val="42.00">$42.00</p>
+                </div>
+                <button onclick="addToCart('Barrier Repair Moisturizer', 42.00)" class="mt-4 w-full bg-[#2D2A26] hover:bg-neutral-700 text-white py-2.5 rounded-xl text-xs font-semibold transition">Add to Cart</button>
+            </div>
+            <!-- Product 3 -->
+            <div class="bg-white p-4 rounded-2xl shadow-sm border border-neutral-100 flex flex-col justify-between group">
+                <div>
+                    <div class="bg-[#EFECE6] rounded-xl overflow-hidden h-64 mb-4 relative">
+                        <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=500&q=80" alt="Cleanser" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                    </div>
+                    <h3 class="font-serif font-medium text-neutral-800">Gentle Gel Cleanser</h3>
+                    <p class="text-xs text-neutral-500 mt-0.5">Green Tea & Chamomile</p>
+                    <p class="font-semibold text-sm mt-2 text-[#2D2A26] product-price" data-usd="28.00" data-usd-val="28.00">$28.00</p>
+                </div>
+                <button onclick="addToCart('Gentle Gel Cleanser', 28.00)" class="mt-4 w-full bg-[#2D2A26] hover:bg-neutral-700 text-white py-2.5 rounded-xl text-xs font-semibold transition">Add to Cart</button>
+            </div>
+            <!-- Product 4 -->
+            <div class="bg-white p-4 rounded-2xl shadow-sm border border-neutral-100 flex flex-col justify-between group">
+                <div>
+                    <div class="bg-[#EFECE6] rounded-xl overflow-hidden h-64 mb-4 relative">
+                        <img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=500&q=80" alt="Sunscreen" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                        <span class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-[10px] font-semibold px-2.5 py-1 rounded-full uppercase">New</span>
+                    </div>
+                    <h3 class="font-serif font-medium text-neutral-800">Daily Mineral Sunscreen</h3>
+                    <p class="text-xs text-neutral-500 mt-0.5">Invisible Zinc Shield SPF 50</p>
+                    <p class="font-semibold text-sm mt-2 text-[#2D2A26] product-price" data-usd="36.00" data-usd-val="36.00">$36.00</p>
+                </div>
+                <button onclick="addToCart('Daily Mineral Sunscreen', 36.00)" class="mt-4 w-full bg-[#2D2A26] hover:bg-neutral-700 text-white py-2.5 rounded-xl text-xs font-semibold transition">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE-OVER CART DRAWER -->
+    <div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div id="cart-backdrop" class="absolute inset-0 bg-black/40 backdrop-blur-sm transition-opacity"></div>
+        <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
+            <div class="w-screen max-w-md bg-white shadow-2xl flex flex-col">
+                <div class="p-6 border-b flex justify-between items-center bg-[#FAF8F5]">
+                    <h2 class="font-serif text-lg font-bold text-[#2D2A26]">Your Shopping Cart</h2>
+                    <button id="cart-close-btn" class="text-neutral-500 hover:text-black text-xl font-bold">×</button>
+                </div>
+                <div id="cart-items-container" class="flex-1 overflow-y-auto p-6 space-y-4">
+                    <!-- Cart items will be dynamically loaded here -->
+                </div>
+                <div class="p-6 border-t bg-[#FAF8F5] space-y-4">
+                    <div class="flex justify-between items-center text-sm font-semibold">
+                        <span>Subtotal:</span>
+                        <span id="cart-subtotal">$0.00</span>
+                    </div>
+                    <button onclick="checkout()" class="w-full bg-teal-500 hover:bg-teal-600 text-white py-3 rounded-xl font-semibold text-sm transition shadow-md">Proceed to Checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- FOOTER -->
     <footer class="bg-[#2D2A26] text-white py-12 px-6 mt-16">
@@ -160,24 +198,108 @@
         </div>
     </footer>
 
-    <!-- SCRIPT FOR CURRENCY CONVERTER LOGIC -->
+    <!-- JAVASCRIPT LOGIC (Currency & Cart Drawer) -->
     <script>
-        const currencySelector = document.getElementById('currency-selector');
-        const priceElements = document.querySelectorAll('.product-price');
-        const conversionRate = 56.50; // Standard USD to PHP rate
+        let cart = [];
+        let currentCurrency = 'USD';
+        const conversionRate = 56.50;
 
+        const currencySelector = document.getElementById('currency-selector');
+        const cartToggleBtn = document.getElementById('cart-toggle-btn');
+        const cartCloseBtn = document.getElementById('cart-close-btn');
+        const cartBackdrop = document.getElementById('cart-backdrop');
+        const cartDrawer = document.getElementById('cart-drawer');
+
+        // Toggle Cart Drawer
+        cartToggleBtn.addEventListener('click', () => cartDrawer.classList.remove('hidden'));
+        cartCloseBtn.addEventListener('click', () => cartDrawer.classList.add('hidden'));
+        cartBackdrop.addEventListener('click', () => cartDrawer.classList.add('hidden'));
+
+        // Currency Converter Logic
         currencySelector.addEventListener('change', (e) => {
-            const currency = e.target.value;
-            priceElements.forEach(el => {
-                const usdValue = parseFloat(el.getAttribute('data-usd'));
-                if (currency === 'PHP') {
-                    const phpValue = (usdValue * conversionRate).toLocaleString('en-PH', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-                    el.innerText = `₱${phpValue}`;
-                } else {
-                    el.innerText = `$${usdValue.toFixed(2)}`;
-                }
-            });
+            currentCurrency = e.target.value;
+            updatePricesDisplay();
+            renderCart();
         });
+
+        function formatPrice(usdVal) {
+            if (currentCurrency === 'PHP') {
+                const phpVal = usdVal * conversionRate;
+                return `₱${phpVal.toLocaleString('en-PH', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+            } else {
+                return `$${usdVal.toFixed(2)}`;
+            }
+        }
+
+        function updatePricesDisplay() {
+            const priceEls = document.querySelectorAll('.product-price');
+            priceEls.forEach(el => {
+                const usdVal = parseFloat(el.getAttribute('data-usd-val'));
+                el.innerText = formatPrice(usdVal);
+            });
+        }
+
+        // Add to Cart Logic
+        function addToCart(name, priceUSD) {
+            const existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.qty += 1;
+            } else {
+                cart.push({ name, priceUSD, qty: 1 });
+            }
+            updateCartUI();
+            cartDrawer.classList.remove('hidden');
+        }
+
+        function updateCartUI() {
+            const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
+            document.getElementById('cart-count').innerText = totalCount;
+            renderCart();
+        }
+
+        function renderCart() {
+            const container = document.getElementById('cart-items-container');
+            container.innerHTML = "";
+
+            if (cart.length === 0) {
+                container.innerHTML = `<p class="text-neutral-400 text-center py-12 text-sm">Your cart is empty.</p>`;
+                document.getElementById('cart-subtotal').innerText = formatPrice(0);
+                return;
+            }
+
+            let subtotalUSD = 0;
+            cart.forEach((item, index) => {
+                subtotalUSD += item.priceUSD * item.qty;
+                const div = document.createElement('div');
+                div.className = "flex justify-between items-center bg-white p-3 rounded-xl border border-neutral-100 text-sm";
+                div.innerHTML = `
+                    <div>
+                        <p class="font-medium text-neutral-800">${item.name}</p>
+                        <p class="text-xs text-neutral-500">${formatPrice(item.priceUSD)} x ${item.qty}</p>
+                    </div>
+                    <button onclick="removeItem(${index})" class="text-neutral-400 hover:text-red-500 font-bold px-2">×</button>
+                `;
+                container.appendChild(div);
+            });
+
+            document.getElementById('cart-subtotal').innerText = formatPrice(subtotalUSD);
+        }
+
+        function removeItem(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                alert("Your cart is empty!");
+                return;
+            }
+            alert("Order placed successfully! Thank you for shopping with Lumina Skincare. (Simulation mode)");
+            cart = [];
+            updateCartUI();
+            cartDrawer.classList.add('hidden');
+        }
     </script>
 
 </body>
