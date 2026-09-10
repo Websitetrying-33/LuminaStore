@@ -80,7 +80,7 @@
             </div>
             <div class="flex flex-col items-center space-y-2">
                 <span class="text-2xl">💳</span>
-                <h4 class="font-serif font-medium text-sm text-neutral-800">Cards, COD, GCash & PayMaya</h4>
+                <h4 class="font-serif font-medium text-sm text-neutral-800">COD, GCash & PayMaya</h4>
             </div>
         </div>
     </section>
@@ -245,39 +245,26 @@
                     <h3 class="text-xs font-bold uppercase tracking-wider text-neutral-500 pt-2">Payment Method</h3>
                     <div class="space-y-2">
                         <label class="flex items-center space-x-3 border border-neutral-200 p-3 rounded-xl cursor-pointer hover:bg-neutral-50">
-                            <input type="radio" name="payment" value="Card" checked onclick="togglePaymentFields('Card')">
-                            <span class="text-sm font-medium">Credit / Debit Card (Visa, Mastercard)</span>
-                        </label>
-                        <label class="flex items-center space-x-3 border border-neutral-200 p-3 rounded-xl cursor-pointer hover:bg-neutral-50">
-                            <input type="radio" name="payment" value="COD" onclick="togglePaymentFields('COD')">
+                            <input type="radio" name="payment" value="COD" checked onclick="toggleQR(false)">
                             <span class="text-sm font-medium">Cash on Delivery (COD)</span>
                         </label>
                         <label class="flex items-center space-x-3 border border-neutral-200 p-3 rounded-xl cursor-pointer hover:bg-neutral-50">
-                            <input type="radio" name="payment" value="GCash" onclick="togglePaymentFields('GCash')">
+                            <input type="radio" name="payment" value="GCash" onclick="toggleQR('GCash')">
                             <span class="text-sm font-medium">GCash (Scan QR)</span>
                         </label>
                         <label class="flex items-center space-x-3 border border-neutral-200 p-3 rounded-xl cursor-pointer hover:bg-neutral-50">
-                            <input type="radio" name="payment" value="PayMaya" onclick="togglePaymentFields('PayMaya')">
+                            <input type="radio" name="payment" value="PayMaya" onclick="toggleQR('PayMaya')">
                             <span class="text-sm font-medium">PayMaya (Scan QR)</span>
                         </label>
                     </div>
 
-                    <!-- CARD DETAILS CONTAINER -->
-                    <div id="card-container" class="space-y-3 bg-neutral-50 p-4 rounded-xl border border-neutral-200">
-                        <p class="text-xs font-semibold text-neutral-700">Card Information</p>
-                        <input type="text" placeholder="Card Number (4000 1234 5678 9010)" class="border border-neutral-200 p-2.5 rounded-lg text-xs w-full bg-white focus:outline-none">
-                        <div class="grid grid-cols-2 gap-2">
-                            <input type="text" placeholder="MM / YY" class="border border-neutral-200 p-2.5 rounded-lg text-xs bg-white focus:outline-none">
-                            <input type="text" placeholder="CVV" class="border border-neutral-200 p-2.5 rounded-lg text-xs bg-white focus:outline-none">
-                        </div>
-                    </div>
-
-                    <!-- QR CODE CONTAINER -->
+                    <!-- DYNAMIC QR CODE CONTAINER -->
                     <div id="qr-container" class="hidden text-center bg-neutral-50 p-4 rounded-xl border border-dashed border-neutral-300 space-y-2">
-                        <p id="qr-label" class="text-xs font-semibold text-neutral-700">Scan to Pay</p>
-                        <div class="w-32 h-32 mx-auto bg-white p-2 rounded-lg shadow-sm border flex items-center justify-center">
-                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=LuminaSkincarePayment" alt="QR Code" class="w-full h-full object-contain">
+                        <p id="qr-label" class="text-xs font-semibold text-neutral-700">Scan to Pay via GCash</p>
+                        <div class="w-36 h-36 mx-auto bg-white p-2 rounded-lg shadow-sm border flex items-center justify-center">
+                            <img id="dynamic-qr-img" src="" alt="Dynamic QR Code" class="w-full h-full object-contain">
                         </div>
+                        <p id="qr-amount-text" class="text-xs font-bold text-teal-700"></p>
                     </div>
 
                     <div class="pt-4 flex space-x-3">
@@ -310,7 +297,7 @@
                 <div class="space-y-4 text-xs">
                     <div class="flex items-center space-x-3">
                         <span class="w-5 h-5 bg-teal-500 text-white rounded-full flex items-center justify-center text-[10px]">✓</span>
-                        <div><p class="font-bold">Order Confirmed</p><p class="text-neutral-400">Payment verified successfully</p></div>
+                        <div><p class="font-bold">Order Confirmed</p><p class="text-neutral-400">Payment verified via GCash/COD</p></div>
                     </div>
                     <div class="flex items-center space-x-3">
                         <span class="w-5 h-5 bg-teal-500 text-white rounded-full flex items-center justify-center text-[10px]">✓</span>
@@ -417,6 +404,10 @@
             renderCart();
         }
 
+        function calculateSubtotalUSD() {
+            return cart.reduce((sum, item) => sum + (item.priceUSD * item.qty), 0);
+        }
+
         function renderCart() {
             const container = document.getElementById('cart-items-container');
             container.innerHTML = "";
@@ -427,9 +418,8 @@
                 return;
             }
 
-            let subtotalUSD = 0;
+            let subtotalUSD = calculateSubtotalUSD();
             cart.forEach((item, index) => {
-                subtotalUSD += item.priceUSD * item.qty;
                 const div = document.createElement('div');
                 div.className = "flex justify-between items-center bg-white p-3 rounded-xl border border-neutral-100 text-sm";
                 div.innerHTML = `
@@ -470,6 +460,9 @@
             document.getElementById('cart-view-section').classList.add('hidden');
             document.getElementById('checkout-view-section').classList.remove('hidden');
             document.getElementById('drawer-title').innerText = "Shipping & Payment";
+            
+            // Generate dynamic QR code based on current total and customer name if available
+            updateDynamicQR();
         }
 
         function backToCart() {
@@ -478,24 +471,38 @@
             document.getElementById('drawer-title').innerText = "Your Shopping Cart";
         }
 
-        function togglePaymentFields(method) {
-            const cardContainer = document.getElementById('card-container');
+        function toggleQR(method) {
             const qrContainer = document.getElementById('qr-container');
             const qrLabel = document.getElementById('qr-label');
-
-            if (method === 'Card') {
-                cardContainer.classList.remove('hidden');
-                qrContainer.classList.add('hidden');
-            } else if (method === 'GCash' || method === 'PayMaya') {
-                cardContainer.classList.add('hidden');
+            if (method) {
                 qrContainer.classList.remove('hidden');
                 qrLabel.innerText = `Scan to Pay via ${method}`;
+                updateDynamicQR(method);
             } else {
-                // COD
-                cardContainer.classList.add('hidden');
                 qrContainer.classList.add('hidden');
             }
         }
+
+        function updateDynamicQR(method = 'GCash') {
+            const subtotalUSD = calculateSubtotalUSD() * discountMultiplier;
+            const formattedTotal = formatPrice(subtotalUSD);
+            const nameInput = document.getElementById('ship-name').value.trim() || "Customer";
+            
+            // Create dynamic data string encoded into the QR code
+            const qrData = `LuminaPay_${method}_To:${nameInput}_Amount:${formattedTotal}`;
+            const qrImgUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(qrData)}`;
+            
+            document.getElementById('dynamic-qr-img').src = qrImgUrl;
+            document.getElementById('qr-amount-text').innerText = `Amount to Pay: ${formattedTotal}`;
+        }
+
+        // Update QR code if name changes
+        document.getElementById('ship-name').addEventListener('input', () => {
+            const selectedPayment = document.querySelector('input[name="payment"]:checked').value;
+            if (selectedPayment !== 'COD') {
+                updateDynamicQR(selectedPayment);
+            }
+        });
 
         function completeOrder() {
             const name = document.getElementById('ship-name').value.trim();
@@ -510,6 +517,7 @@
             const orderId = "LUM-" + Math.floor(1000 + Math.random() * 9000);
             alert(`Order Successful! Your Order ID is ${orderId}. You can now track your delivery using this ID.`);
             cart = [];
+            discountMultiplier = 1.0;
             updateCartUI();
             cartDrawer.classList.add('hidden');
             backToCart();
