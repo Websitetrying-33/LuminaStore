@@ -9,21 +9,28 @@
 </head>
 <body class="bg-[#FAF8F5] font-sans antialiased text-neutral-800">
 
-    <!-- ANNOUNCEMENT BAR -->
-    <div class="bg-[#2D2A26] text-white text-xs text-center py-2 px-4 tracking-widest uppercase">
-        Free shipping on all orders over $50 • Use code LUMINA10 for 10% off
+    <!-- TOP ANNOUNCEMENT & CURRENCY CONVERTER BAR -->
+    <div class="bg-[#2D2A26] text-white text-xs py-2 px-6 flex flex-col sm:flex-row justify-between items-center gap-2">
+        <p class="tracking-widest uppercase">Free shipping on orders over $50 • Use code LUMINA10 for 10% off</p>
+        <div class="flex items-center space-x-2 bg-neutral-800 px-3 py-1 rounded-full border border-neutral-700">
+            <span class="text-neutral-400">Currency:</span>
+            <select id="currency-selector" class="bg-transparent text-white font-semibold focus:outline-none cursor-pointer">
+                <option value="USD" selected>USD ($)</option>
+                <option value="PHP">PHP (₱)</option>
+            </select>
+        </div>
     </div>
 
     <!-- HEADER / NAVIGATION -->
-    <header class="sticky top-0 bg-[#FAF8F5]/90 backdrop-blur-md z-50 border-b border-neutral-200 px-8 py-4 flex justify-between items-center">
+    <header class="sticky top-0 bg-[#FAF8F5]/95 backdrop-blur-md z-50 border-b border-neutral-200 px-8 py-4 flex justify-between items-center">
         <div class="flex items-center space-x-2">
             <span class="text-xl font-serif tracking-widest uppercase font-bold text-[#2D2A26]">Lumina</span>
         </div>
         <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-neutral-600">
             <a href="#shop" class="hover:text-black transition">Shop All</a>
             <a href="#best-sellers" class="hover:text-black transition">Best Sellers</a>
+            <a href="#vip-club" class="hover:text-teal-700 transition font-semibold text-teal-600">✨ VIP Club</a>
             <a href="#about" class="hover:text-black transition">Our Philosophy</a>
-            <a href="#reviews" class="hover:text-black transition">Reviews</a>
         </nav>
         <div class="flex items-center space-x-5 text-sm">
             <button id="search-btn" class="hover:text-black">Search</button>
@@ -39,12 +46,27 @@
             <p class="text-neutral-600 text-base max-w-md">Formulated with clean, active botanical ingredients designed to nourish, hydrate, and protect your skin barrier every single day.</p>
             <div class="flex space-x-4 pt-2">
                 <a href="#shop" class="bg-[#2D2A26] text-white px-8 py-3 rounded-full text-sm font-medium hover:bg-neutral-700 transition">Shop Collection</a>
-                <a href="#about" class="border border-neutral-400 text-neutral-800 px-8 py-3 rounded-full text-sm font-medium hover:border-black transition">Learn More</a>
+                <a href="#vip-club" class="border border-neutral-400 text-neutral-800 px-8 py-3 rounded-full text-sm font-medium hover:border-black transition">Join VIP Club</a>
             </div>
         </div>
         <div class="relative">
             <div class="bg-[#EFECE6] rounded-3xl overflow-hidden shadow-sm h-[400px] md:h-[500px] flex items-center justify-center">
                 <img src="https://images.unsplash.com/photo-1608248597359-974254823122?auto=format&fit=crop&w=800&q=80" alt="Lumina Skincare Products" class="w-full h-full object-cover">
+            </div>
+        </div>
+    </section>
+
+    <!-- VIP MEMBERSHIP PROMOTION BANNER (To Attract Customers) -->
+    <section id="vip-club" class="max-w-7xl mx-auto px-6 py-12">
+        <div class="bg-gradient-to-r from-[#2D2A26] to-[#4A453F] rounded-3xl p-8 md:p-12 text-white flex flex-col md:flex-row justify-between items-center shadow-lg">
+            <div class="space-y-4 max-w-xl mb-6 md:mb-0">
+                <span class="bg-teal-500 text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">Exclusive Offer</span>
+                <h2 class="text-3xl font-serif">Subscribe to Lumina VIP & Save 20%</h2>
+                <p class="text-neutral-300 text-sm">Join our membership program to get free express shipping, early access to new product drops, and a surprise gift on your birthday.</p>
+            </div>
+            <div class="w-full md:w-auto flex flex-col sm:flex-row gap-3">
+                <input type="email" placeholder="Enter your email address" class="px-5 py-3 rounded-full text-neutral-800 text-sm focus:outline-none min-w-[260px]">
+                <button onclick="alert('Thank you for subscribing to Lumina VIP! Check your email for your 20% discount voucher.')" class="bg-teal-500 hover:bg-teal-600 text-white font-semibold px-8 py-3 rounded-full text-sm transition">Subscribe Now</button>
             </div>
         </div>
     </section>
@@ -62,13 +84,13 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             <!-- Product 1 -->
             <div class="group cursor-pointer">
-                <div class="bg-[#EFECE6] rounded-2xl overflow-hiden h-72 mb-4 relative">
+                <div class="bg-[#EFECE6] rounded-2xl overflow-hidden h-72 mb-4 relative">
                     <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=500&q=80" alt="Serum" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-                    <span class="absolute top-3 left-3 bg-white/80 backdrop-blur-sm text-[10px] font-semibold px-2.5 py-1 rounded-full uppercase">Bestseller</span>
+                    <span class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-[10px] font-semibold px-2.5 py-1 rounded-full uppercase">Bestseller</span>
                 </div>
                 <h3 class="font-serif font-medium text-neutral-800">Hydrating Botanical Serum</h3>
                 <p class="text-xs text-neutral-500 mt-0.5">Hyaluronic Acid & Niacinamide</p>
-                <p class="font-semibold text-sm mt-2 text-[#2D2A26]">$48.00</p>
+                <p class="font-semibold text-sm mt-2 text-[#2D2A26] product-price" data-usd="48.00">$48.00</p>
             </div>
             <!-- Product 2 -->
             <div class="group cursor-pointer">
@@ -77,7 +99,7 @@
                 </div>
                 <h3 class="font-serif font-medium text-neutral-800">Barrier Repair Moisturizer</h3>
                 <p class="text-xs text-neutral-500 mt-0.5">Ceramides & Peptides</p>
-                <p class="font-semibold text-sm mt-2 text-[#2D2A26]">$42.00</p>
+                <p class="font-semibold text-sm mt-2 text-[#2D2A26] product-price" data-usd="42.00">$42.00</p>
             </div>
             <!-- Product 3 -->
             <div class="group cursor-pointer">
@@ -86,17 +108,17 @@
                 </div>
                 <h3 class="font-serif font-medium text-neutral-800">Gentle Gel Cleanser</h3>
                 <p class="text-xs text-neutral-500 mt-0.5">Green Tea & Chamomile</p>
-                <p class="font-semibold text-sm mt-2 text-[#2D2A26]">$28.00</p>
+                <p class="font-semibold text-sm mt-2 text-[#2D2A26] product-price" data-usd="28.00">$28.00</p>
             </div>
             <!-- Product 4 -->
             <div class="group cursor-pointer">
                 <div class="bg-[#EFECE6] rounded-2xl overflow-hidden h-72 mb-4 relative">
                     <img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=500&q=80" alt="Sunscreen" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-                    <span class="absolute top-3 left-3 bg-white/80 backdrop-blur-sm text-[10px] font-semibold px-2.5 py-1 rounded-full uppercase">New</span>
+                    <span class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-[10px] font-semibold px-2.5 py-1 rounded-full uppercase">New</span>
                 </div>
                 <h3 class="font-serif font-medium text-neutral-800">Daily Mineral Sunscreen SPF 50</h3>
                 <p class="text-xs text-neutral-500 mt-0.5">Invisible Zinc Shield</p>
-                <p class="font-semibold text-sm mt-2 text-[#2D2A26]">$36.00</p>
+                <p class="font-semibold text-sm mt-2 text-[#2D2A26] product-price" data-usd="36.00">$36.00</p>
             </div>
         </div>
     </section>
@@ -111,6 +133,26 @@
             <p class="text-xs text-neutral-400">© 2026 Lumina Skincare. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- SCRIPT FOR CURRENCY CONVERTER LOGIC -->
+    <script>
+        const currencySelector = document.getElementById('currency-selector');
+        const priceElements = document.querySelectorAll('.product-price');
+        const conversionRate = 56.50; // Standard conversion rate USD to PHP
+
+        currencySelector.addEventListener('change', (e) => {
+            const currency = e.target.value;
+            priceElements.forEach(el => {
+                const usdValue = parseFloat(el.getAttribute('data-usd'));
+                if (currency === 'PHP') {
+                    const phpValue = (usdValue * conversionRate).toLocaleString('en-PH', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                    el.innerText = `₱${phpValue}`;
+                } else {
+                    el.innerText = `$${usdValue.toFixed(2)}`;
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>
