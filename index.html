@@ -1,716 +1,116 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lumina Skincare | Radiance Redefined</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        body { font-family: 'Inter', sans-serif; margin: 0; background-color: #fcfbf9; color: #1a1a1a; scroll-behavior: smooth; }
-        .announcement-bar { text-align: center; padding: 6px; font-size: 11px; background-color: #1a1a1a; color: #f4ece1; font-weight: 500; letter-spacing: 1px; }
-        
-        /* Header / Nav - Pinalaki ang Logo at Icon */
-        header { display: flex; justify-content: space-between; align-items: center; padding: 14px 30px; background: #fff; border-bottom: 1px solid #eaeaea; position: sticky; top: 0; z-index: 100; gap: 15px; flex-wrap: wrap; }
-        .logo-container { display: flex; align-items: center; gap: 10px; cursor: pointer; }
-        .logo-icon { width: 28px; height: 28px; background: #1a1a1a; color: #f4ece1; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: 700; font-size: 14px; }
-        .logo { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 20px; letter-spacing: 2px; color: #1a1a1a; text-transform: uppercase; }
-        
-        .search-box { flex: 1; max-width: 260px; position: relative; }
-        .search-box input { width: 100%; padding: 6px 12px 6px 30px; border: 1px solid #ddd; border-radius: 20px; font-size: 12px; background: #f9f9f9; outline: none; box-sizing: border-box; }
-        .search-box span { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: #888; font-size: 12px; }
-
-        .header-actions { display: flex; align-items: center; gap: 10px; }
-        .currency-select { padding: 5px 8px; border-radius: 20px; border: 1px solid #ddd; font-size: 11px; background: #f9f9f9; cursor: pointer; outline: none; }
-        .cart-btn { background: #f4ece1; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; color: #333; cursor: pointer; border: none; transition: background 0.2s; white-space: nowrap; }
-        .cart-btn:hover { background: #eadbc8; }
-
-        /* Compacted Hero Section */
-        .hero { display: flex; align-items: center; justify-content: center; text-align: center; padding: 25px 20px; background: linear-gradient(135deg, #f5efe6 0%, #faebd7 100%); border-bottom: 1px solid #eadbc8; position: relative; min-height: 165px; }
-        .hero-content { max-width: 440px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; }
-        .hero h1 { font-family: 'Playfair Display', serif; font-size: 24px; margin: 0 0 5px; font-weight: 600; letter-spacing: -0.5px; color: #222; line-height: 1.2; }
-        .hero h1 span { font-style: italic; font-weight: 400; color: #a67c52; }
-        .hero p { color: #555; margin: 0 auto 10px auto; font-size: 11px; max-width: 380px; line-height: 1.4; }
-
-        /* Right Side Stacked Widget Container (Pinalaki nang konti para hindi na mukhang masikip) */
-        .hero-widgets-right { position: absolute; right: 25px; top: 12px; display: flex; flex-direction: column; gap: 9px; z-index: 10; }
-
-        /* Pinalaking Hero Widgets (VIP at Track Package) */
-        .hero-widget-box { background: #1a1a1a; color: #f4ece1; padding: 11px 14px; border-radius: 7px; display: flex; flex-direction: column; align-items: flex-start; gap: 6px; width: 265px; box-sizing: border-box; box-shadow: 0 4px 12px rgba(0,0,0,0.15); text-align: left; }
-        .hero-widget-box h4 { font-family: 'Playfair Display', serif; font-size: 12.5px; margin: 0; color: #f4ece1; }
-        .hero-widget-box p { margin: 0; color: #ccc; font-size: 11px; line-height: 1.3; text-align: left; }
-        .hero-widget-box form, .hero-widget-inline { display: flex; gap: 5px; width: 100%; margin-top: 3px; }
-        .hero-widget-box input { flex: 1; padding: 6px 9px; border-radius: 4px; border: none; font-size: 11.5px; outline: none; box-sizing: border-box; }
-        .hero-widget-box button { background: #a67c52; color: #fff; border: none; padding: 6px 11px; border-radius: 4px; font-size: 11.5px; font-weight: 600; cursor: pointer; transition: background 0.2s; white-space: nowrap; }
-        .hero-widget-box button:hover { background: #bd9368; }
-        .hero-widget-result { font-size: 11px; margin-top: 3px; width: 100%; word-break: break-word; line-height: 1.3; }
-
-        /* Main Catalog Layout */
-        .main-layout { max-width: 1100px; margin: 25px auto; padding: 0 20px; }
-        .content-area { width: 100%; }
-
-        .section-title { text-align: center; margin-top: 0; font-size: 20px; font-family: 'Playfair Display', serif; font-weight: 600; letter-spacing: 0.5px; }
-        
-        /* Category Filter Tabs */
-        .filter-tabs { display: flex; justify-content: center; gap: 8px; margin: 12px 0 20px; flex-wrap: wrap; }
-        .filter-tab { background: #fff; border: 1px solid #ddd; padding: 5px 12px; border-radius: 20px; font-size: 11px; font-weight: 500; cursor: pointer; transition: all 0.2s; color: #555; }
-        .filter-tab.active, .filter-tab:hover { background: #1a1a1a; color: #fff; border-color: #1a1a1a; }
-
-        /* Product Grid */
-        .container { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
-        
-        .product-card { background: #fff; padding: 15px; border: 1px solid #eaeaea; text-align: center; border-radius: 8px; transition: transform 0.2s, box-shadow 0.2s; display: flex; flex-direction: column; justify-content: space-between; width: calc(33.333% - 16px); max-width: 240px; box-sizing: border-box; position: relative; }
-        .product-card:hover { transform: translateY(-3px); box-shadow: 0 6px 15px rgba(0,0,0,0.05); }
-        
-        /* Stock Badge Tag */
-        .stock-badge { position: absolute; top: 10px; left: 10px; background: rgba(0, 0, 0, 0.7); color: #f4ece1; font-size: 9px; padding: 3px 7px; border-radius: 4px; font-weight: 600; letter-spacing: 0.5px; }
-
-        .product-card img { width: 100%; height: 160px; object-fit: cover; border-radius: 6px; margin-bottom: 10px; cursor: pointer; }
-        .product-card h3 { font-size: 14px; margin: 5px 0 6px; font-weight: 600; cursor: pointer; color: #222; }
-        
-        .stars { color: #d4a373; font-size: 11px; margin-bottom: 4px; cursor: pointer; display: inline-block; }
-        .stars:hover { opacity: 0.8; text-decoration: underline; }
-        .reviews-count { color: #888; font-size: 10px; }
-
-        .product-card p.price { color: #444; font-weight: 600; margin: 6px 0 12px; font-size: 13px; }
-        
-        .btn { display: block; background: #1a1a1a; color: #fff; padding: 8px; text-align: center; text-decoration: none; border-radius: 6px; font-size: 12px; transition: background 0.2s; border: none; cursor: pointer; width: 100%; font-weight: 500; }
-        .btn:hover { background: #333; }
-
-        /* Free Shipping Progress Bar Styles */
-        .shipping-meter { padding: 12px 15px; background: #f5efe6; border-bottom: 1px solid #eaeaea; font-size: 12px; text-align: center; color: #444; }
-        .progress-track { background: #e0d5c5; height: 6px; border-radius: 3px; margin-top: 6px; overflow: hidden; position: relative; }
-        .progress-fill { background: #a67c52; height: 100%; width: 0%; transition: width 0.3s ease; }
-
-        /* Slide-out Cart Drawer */
-        .cart-drawer { position: fixed; top: 0; right: -380px; width: 360px; height: 100%; background: #fff; box-shadow: -5px 0 15px rgba(0,0,0,0.1); z-index: 1000; transition: right 0.3s ease; display: flex; flex-direction: column; }
-        .cart-drawer.open { right: 0; }
-        .cart-header { padding: 18px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; }
-        .close-cart { background: none; border: none; font-size: 18px; cursor: pointer; }
-        .cart-items { flex: 1; overflow-y: auto; padding: 15px; }
-        .cart-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid #f2f2f2; font-size: 13px; }
-        .qty-controls { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
-        .qty-btn { background: #eee; border: none; width: 20px; height: 20px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 11px; }
-        .cart-footer { padding: 18px; border-top: 1px solid #eee; background: #fcfbf9; }
-        
-        .cart-upsell { background: #f5efe6; padding: 10px; border-radius: 6px; margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; font-size: 12px; border: 1px dashed #a67c52; }
-
-        .promo-box { display: flex; gap: 6px; margin-bottom: 12px; }
-        .promo-box input { flex: 1; padding: 6px 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 12px; text-transform: uppercase; }
-        .promo-box button { background: #a67c52; color: #fff; border: none; padding: 6px 12px; border-radius: 4px; font-size: 12px; cursor: pointer; }
-
-        .cart-total { display: flex; justify-content: space-between; font-weight: 600; font-size: 15px; margin-bottom: 12px; }
-        
-        .toast { position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%) translateY(100px); background: #1a1a1a; color: #f4ece1; padding: 10px 20px; border-radius: 30px; font-size: 13px; z-index: 3000; transition: transform 0.3s ease; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
-        .toast.show { transform: translateX(-50%) translateY(0); }
-
-        .testimonials-section { background: #f5efe6; padding: 30px 20px; margin-top: 35px; text-align: center; }
-        .testimonials-container { display: flex; gap: 20px; max-width: 950px; margin: 20px auto 0; overflow-x: auto; padding-bottom: 10px; justify-content: center; flex-wrap: wrap; }
-        .testimonial-card { background: #fff; padding: 18px; border-radius: 8px; width: 280px; text-align: left; box-shadow: 0 4px 10px rgba(0,0,0,0.03); border: 1px solid #eaeaea; }
-        .testimonial-card p { font-size: 13px; color: #555; line-height: 1.4; margin-bottom: 10px; font-style: italic; }
-        .testimonial-card h4 { font-size: 13px; margin: 0; font-weight: 600; color: #222; }
-
-        .faq-section { max-width: 700px; margin: 35px auto; padding: 0 20px; }
-        .faq-item { border-bottom: 1px solid #e0d5c5; margin-bottom: 8px; }
-        .faq-question { width: 100%; background: none; border: none; text-align: left; padding: 12px 0; font-size: 14px; font-weight: 600; color: #222; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
-        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; font-size: 13px; color: #666; line-height: 1.4; padding-bottom: 0; }
-        .faq-item.active .faq-answer { max-height: 120px; padding-bottom: 12px; }
-
-        footer { text-align: center; padding: 25px; background: #111; color: #888; font-size: 12px; letter-spacing: 0.5px; }
-
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; justify-content: center; align-items: center; z-index: 2000; }
-        .modal-overlay.active { display: flex; }
-        .modal-content { background: #fff; padding: 25px; width: 420px; border-radius: 10px; max-height: 85vh; overflow-y: auto; box-shadow: 0 10px 25px rgba(0,0,0,0.15); position: relative; box-sizing: border-box; }
-        .modal-close { background: none; border: none; position: absolute; right: 15px; top: 15px; font-size: 18px; cursor: pointer; color: #777; }
-        
-        .qv-footer { position: sticky; bottom: -25px; background: #fff; padding: 12px 0 0; margin-top: 15px; border-top: 1px solid #eee; }
-
-        .form-group { margin-bottom: 12px; }
-        .form-group label { display: block; font-size: 11px; font-weight: 600; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; color: #555; }
-        .form-group input, .form-group select { width: 100%; padding: 8px 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 13px; box-sizing: border-box; background: #fff; }
-
-        /* Responsive layout adjustment for mobile screens */
-        @media (max-width: 768px) {
-            .hero { padding: 20px 15px; flex-direction: column; min-height: auto; }
-            .hero-widgets-right { position: relative; right: auto; top: auto; margin-top: 10px; width: 100%; max-width: 285px; align-items: center; }
-            .hero-widget-box { width: 100%; }
-            .product-card { width: calc(50% - 10px); max-width: none; }
-        }
-    </style>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>Lumina Skincare — Pure & Natural Radiance</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-[#FAF8F5] font-sans antialiased text-neutral-800">
 
-    <div class="announcement-bar">
-        ✨ Free Worldwide Shipping on Orders Over $50 | Use Code: RADIANCE for 15% Off ✨
+    <!-- ANNOUNCEMENT BAR -->
+    <div class="bg-[#2D2A26] text-white text-xs text-center py-2 px-4 tracking-widest uppercase">
+        Free shipping on all orders over $50 • Use code LUMINA10 for 10% off
     </div>
 
-    <!-- Header / Nav -->
-    <header>
-        <div class="logo-container" onclick="window.scrollTo({top:0, behavior:'smooth'})">
-            <div class="logo-icon">L</div>
-            <div class="logo">Lumina</div>
+    <!-- HEADER / NAVIGATION -->
+    <header class="sticky top-0 bg-[#FAF8F5]/90 backdrop-blur-md z-50 border-b border-neutral-200 px-8 py-4 flex justify-between items-center">
+        <div class="flex items-center space-x-2">
+            <span class="text-xl font-serif tracking-widest uppercase font-bold text-[#2D2A26]">Lumina</span>
         </div>
-        <div class="search-box">
-            <span>🔍</span>
-            <input type="text" id="searchInput" placeholder="Search essential products..." onkeyup="filterProducts()">
-        </div>
-        <div class="header-actions">
-            <select class="currency-select" id="currencySelect" onchange="changeCurrency()">
-                <option value="USD">USD ($)</option>
-                <option value="PHP">PHP (₱)</option>
-            </select>
-            <button class="cart-btn" onclick="toggleCart()">Bag (<span id="cart-counter">0</span>)</button>
+        <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-neutral-600">
+            <a href="#shop" class="hover:text-black transition">Shop All</a>
+            <a href="#best-sellers" class="hover:text-black transition">Best Sellers</a>
+            <a href="#about" class="hover:text-black transition">Our Philosophy</a>
+            <a href="#reviews" class="hover:text-black transition">Reviews</a>
+        </nav>
+        <div class="flex items-center space-x-5 text-sm">
+            <button id="search-btn" class="hover:text-black">Search</button>
+            <button id="cart-btn" class="bg-[#2D2A26] text-white px-4 py-2 rounded-full text-xs font-semibold hover:bg-neutral-700 transition">Cart (0)</button>
         </div>
     </header>
 
-    <!-- Super Compact Hero Section -->
-    <div class="hero">
-        <!-- Right Side Stacked Widgets (VIP first, Tracking below it inside the hero) -->
-        <div class="hero-widgets-right">
-            <div class="hero-widget-box">
-                <div>
-                    <h4>Join Lumina VIP</h4>
-                    <p>Subscribe for 10% off first order.</p>
-                </div>
-                <form onsubmit="handleNewsletter(event)">
-                    <input type="email" id="vipEmailInput" required placeholder="Enter email...">
-                    <button type="submit">Claim</button>
-                </form>
-            </div>
-
-            <div class="hero-widget-box">
-                <div>
-                    <h4>Track Package</h4>
-                    <p>Enter Order ID (e.g. LUMINA-8841)</p>
-                </div>
-                <div class="hero-widget-inline">
-                    <input type="text" id="trackInput" placeholder="Order ID...">
-                    <button type="button" onclick="trackOrder()">Track</button>
-                </div>
-                <div class="hero-widget-result" id="trackingResultText"></div>
+    <!-- HERO SECTION -->
+    <section class="max-w-7xl mx-auto px-6 py-16 md:py-24 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div class="space-y-6">
+            <span class="text-xs uppercase tracking-widest text-neutral-500 font-semibold">Dermatologist Approved</span>
+            <h1 class="text-4xl md:text-6xl font-serif text-[#2D2A26] leading-tight">Reveal Your Natural Glow</h1>
+            <p class="text-neutral-600 text-base max-w-md">Formulated with clean, active botanical ingredients designed to nourish, hydrate, and protect your skin barrier every single day.</p>
+            <div class="flex space-x-4 pt-2">
+                <a href="#shop" class="bg-[#2D2A26] text-white px-8 py-3 rounded-full text-sm font-medium hover:bg-neutral-700 transition">Shop Collection</a>
+                <a href="#about" class="border border-neutral-400 text-neutral-800 px-8 py-3 rounded-full text-sm font-medium hover:border-black transition">Learn More</a>
             </div>
         </div>
-
-        <div class="hero-content">
-            <h1>Pure Botanicals for Your <span>Radiant Soul</span></h1>
-            <p>Experience clean, dermatologist-tested luxury skincare crafted with natural active ingredients.</p>
-            <a href="#catalog-section" class="btn" style="display: inline-block; width: auto; padding: 5px 14px; text-decoration: none; font-size: 11px;">Explore Collection</a>
-        </div>
-    </div>
-
-    <!-- Main Content Area -->
-    <div class="main-layout" id="catalog-section">
-        <div class="content-area">
-            <h2 class="section-title">Curated Essentials</h2>
-            <div class="filter-tabs">
-                <button class="filter-tab active" onclick="filterCategory('all', this)">All Products</button>
-                <button class="filter-tab" onclick="filterCategory('serum', this)">Serums</button>
-                <button class="filter-tab" onclick="filterCategory('cleanser', this)">Cleansers</button>
-                <button class="filter-tab" onclick="filterCategory('mask', this)">Masks</button>
-            </div>
-
-            <!-- Product Grid with Live Stock Badges -->
-            <div class="container" id="productGrid">
-                <div class="product-card" data-category="serum" data-name="Hydrating Face Serum">
-                    <span class="stock-badge">Huling 4 na lang!</span>
-                    <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=600&q=80" alt="Hydrating Face Serum" onclick="openQuickView('Hydrating Face Serum', 38.00, 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=600&q=80', 'A deeply nourishing facial serum infused with hyaluronic acid and botanical extracts to restore youthful moisture.')">
-                    <h3 onclick="openQuickView('Hydrating Face Serum', 38.00, 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=600&q=80', 'A deeply nourishing facial serum infused with hyaluronic acid and botanical extracts to restore youthful moisture.')">Hydrating Face Serum</h3>
-                    <div class="stars" onclick="openReviewsModal('Hydrating Face Serum', '★★★★★ (142 reviews): Highly effective for dry skin. Absorbs quickly without any heavy greasy feel.')">★★★★★ <span class="reviews-count">(142)</span></div>
-                    <p class="price" data-usd="38.00">$38.00</p>
-                    <button class="btn" onclick="addToCart('Hydrating Face Serum', 38.00)">Add to Bag</button>
-                </div>
-                <div class="product-card" data-category="cleanser" data-name="Glow Daily Cleanser">
-                    <span class="stock-badge">Mainit sa Benta</span>
-                    <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=600&q=80" alt="Glow Daily Cleanser" onclick="openQuickView('Glow Daily Cleanser', 26.00, 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=600&q=80', 'Gentle foaming cleanser designed to clear impurities without stripping natural skin barriers.')">
-                    <h3 onclick="openQuickView('Glow Daily Cleanser', 26.00, 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=600&q=80', 'Gentle foaming cleanser designed to clear impurities without stripping natural skin barriers.')">Glow Daily Cleanser</h3>
-                    <div class="stars" onclick="openReviewsModal('Glow Daily Cleanser', '★★★★★ (98 reviews): Leaves face feeling fresh and clean every morning. Very gentle!')">★★★★★ <span class="reviews-count">(98)</span></div>
-                    <p class="price" data-usd="26.00">$26.00</p>
-                    <button class="btn" onclick="addToCart('Glow Daily Cleanser', 26.00)">Add to Bag</button>
-                </div>
-                <div class="product-card" data-category="serum" data-name="Vitamin C Brightening Cream">
-                    <span class="stock-badge">Limited Stock</span>
-                    <img src="https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?auto=format&fit=crop&w=600&q=80" alt="Vitamin C Brightening Cream" onclick="openQuickView('Vitamin C Brightening Cream', 42.00, 'https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?auto=format&fit=crop&w=600&q=80', 'Powerhouse brightening cream packed with stable Vitamin C to fade dark spots and boost skin glow.')">
-                    <h3 onclick="openQuickView('Vitamin C Brightening Cream', 42.00, 'https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?auto=format&fit=crop&w=600&q=80', 'Powerhouse brightening cream packed with stable Vitamin C to fade dark spots and boost skin glow.')">Vitamin C Brightening Cream</h3>
-                    <div class="stars" onclick="openReviewsModal('Vitamin C Brightening Cream', '★★★★★ (215 reviews): Noticeably brightened my dark spots within 2 weeks of consistent use.')">★★★★★ <span class="reviews-count">(215)</span></div>
-                    <p class="price" data-usd="42.00">$42.00</p>
-                    <button class="btn" onclick="addToCart('Vitamin C Brightening Cream', 42.00)">Add to Bag</button>
-                </div>
-                <div class="product-card" data-category="cleanser" data-name="Glow Exfoliating Toner">
-                    <span class="stock-badge">Bestseller</span>
-                    <img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=600&q=80" alt="Glow Exfoliating Toner" onclick="openQuickView('Glow Exfoliating Toner', 24.00, 'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=600&q=80', 'Clarifying AHA/BHA toner that gently resurfaces skin texture for a smooth, crystal finish.')">
-                    <h3 onclick="openQuickView('Glow Exfoliating Toner', 24.00, 'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=600&q=80', 'Clarifying AHA/BHA toner that gently resurfaces skin texture for a smooth, crystal finish.')">Glow Exfoliating Toner</h3>
-                    <div class="stars" onclick="openReviewsModal('Glow Exfoliating Toner', '★★★★☆ (76 reviews): Smooth skin texture finish. Be careful not to use too often if you have sensitive skin.')">★★★★☆ <span class="reviews-count">(76)</span></div>
-                    <p class="price" data-usd="24.00">$24.00</p>
-                    <button class="btn" onclick="addToCart('Glow Exfoliating Toner', 24.00)">Add to Bag</button>
-                </div>
-                <div class="product-card" data-category="mask" data-name="Midnight Repair Mask">
-                    <span class="stock-badge">Huling 2 na lang!</span>
-                    <img src="https://images.unsplash.com/photo-1617897903246-719242758050?auto=format&fit=crop&w=600&q=80" alt="Midnight Repair Mask" onclick="openQuickView('Midnight Repair Mask', 48.00, 'https://images.unsplash.com/photo-1617897903246-719242758050?auto=format&fit=crop&w=600&q=80', 'Intensive overnight sleeping mask that repairs cellular stress while you sleep.')">
-                    <h3 onclick="openQuickView('Midnight Repair Mask', 48.00, 'https://images.unsplash.com/photo-1617897903246-719242758050?auto=format&fit=crop&w=600&q=80', 'Intensive overnight sleeping mask that repairs cellular stress while you sleep.')">Midnight Repair Mask</h3>
-                    <div class="stars" onclick="openReviewsModal('Midnight Repair Mask', '★★★★★ (189 reviews): Wake up with baby-soft skin every single time. Absolute favorite!')">★★★★★ <span class="reviews-count">(189)</span></div>
-                    <p class="price" data-usd="48.00">$48.00</p>
-                    <button class="btn" onclick="addToCart('Midnight Repair Mask', 48.00)">Add to Bag</button>
-                </div>
-                <div class="product-card" data-category="mask" data-name="Rosewater Calming Mist">
-                    <span class="stock-badge">Trending</span>
-                    <img src="https://images.unsplash.com/photo-1526947425960-945c6e72858f?auto=format&fit=crop&w=600&q=80" alt="Rosewater Calming Mist" onclick="openQuickView('Rosewater Calming Mist', 22.00, 'https://images.unsplash.com/photo-1526947425960-945c6e72858f?auto=format&fit=crop&w=600&q=80', 'Refreshing organic rosewater mist to hydrate and soothe stressed skin instantly.')">
-                    <h3 onclick="openQuickView('Rosewater Calming Mist', 22.00, 'https://images.unsplash.com/photo-1526947425960-945c6e72858f?auto=format&fit=crop&w=600&q=80', 'Refreshing organic rosewater mist to hydrate and soothe stressed skin instantly.')">Rosewater Calming Mist</h3>
-                    <div class="stars" onclick="openReviewsModal('Rosewater Calming Mist', '★★★★☆ (62 reviews): Very refreshing smell and cools down the face during warm afternoons.')">★★★★☆ <span class="reviews-count">(62)</span></div>
-                    <p class="price" data-usd="22.00">$22.00</p>
-                    <button class="btn" onclick="addToCart('Rosewater Calming Mist', 22.00)">Add to Bag</button>
-                </div>
+        <div class="relative">
+            <div class="bg-[#EFECE6] rounded-3xl overflow-hidden shadow-sm h-[400px] md:h-[500px] flex items-center justify-center">
+                <img src="https://images.unsplash.com/photo-1608248597359-974254823122?auto=format&fit=crop&w=800&q=80" alt="Lumina Skincare Products" class="w-full h-full object-cover">
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Customer Testimonials Section -->
-    <div class="testimonials-section">
-        <h2 style="font-family: 'Playfair Display', serif; margin: 0; font-size: 20px;">Loved by Skin Enthusiasts</h2>
-        <p style="color: #666; font-size: 13px; margin-top: 4px;">See how Lumina transforms daily skincare routines worldwide.</p>
-        <div class="testimonials-container">
-            <div class="testimonial-card">
-                <div class="stars">★★★★★</div>
-                <p>"My skin has never felt this glowing and hydrated. The Hydrating Face Serum is an absolute game-changer for my dry skin!"</p>
-                <h4>— Sarah M., Verified Buyer</h4>
+    <!-- PRODUCT CATALOG SECTION -->
+    <section id="shop" class="max-w-7xl mx-auto px-6 py-16 border-t border-neutral-200">
+        <div class="flex justify-between items-end mb-10">
+            <div>
+                <h2 class="text-2xl md:text-3xl font-serif text-[#2D2A26]">Best Selling Essentials</h2>
+                <p class="text-neutral-500 text-sm mt-1">Carefully crafted formulas for glowing skin.</p>
             </div>
-            <div class="testimonial-card">
-                <div class="stars">★★★★★</div>
-                <p>"Super gentle on sensitive skin. No breakouts, just pure crystal finish glow. Worth every single penny."</p>
-                <h4>— Clarissa D., Verified Buyer</h4>
-            </div>
-            <div class="testimonial-card">
-                <div class="stars">★★★★★</div>
-                <p>"Fast shipping and the packaging looks like high-end luxury brands from Seoul and Paris. Obsessed!"</p>
-                <h4>— Elena R., Verified Buyer</h4>
-            </div>
-        </div>
-    </div>
-
-    <!-- Frequently Asked Questions (FAQ) Accordion -->
-    <div class="faq-section">
-        <h2 class="section-title" style="margin-bottom: 20px;">Frequently Asked Questions</h2>
-        
-        <div class="faq-item">
-            <button class="faq-question" onclick="toggleFaq(this)">
-                <span>Are Lumina products cruelty-free and vegan?</span>
-                <span>+</span>
-            </button>
-            <div class="faq-answer">
-                Yes! 100% of our ingredients are ethically sourced, vegan-certified, and never tested on animals. We care deeply about clean beauty standards.
-            </div>
+            <div class="text-xs font-semibold uppercase tracking-wider text-neutral-600 cursor-pointer hover:text-black">View All Products →</div>
         </div>
 
-        <div class="faq-item">
-            <button class="faq-question" onclick="toggleFaq(this)">
-                <span>How long does shipping usually take?</span>
-                <span>+</span>
-            </button>
-            <div class="faq-answer">
-                Standard international orders typically arrive within 3 to 5 business days. We also offer Free Worldwide Shipping on all orders over $50.
-            </div>
-        </div>
-    </div>
-
-    <!-- Quick View Modal -->
-    <div class="modal-overlay" id="quickViewModal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeQuickView()">&times;</button>
-            <div style="display: flex; gap: 15px; flex-direction: column;">
-                <img id="qvImage" src="" alt="" style="width: 100%; height: 200px; object-fit: cover; border-radius: 6px;">
-                <div>
-                    <h3 id="qvTitle" style="margin: 0 0 5px; font-family: 'Playfair Display', serif; font-size: 18px;"></h3>
-                    <p id="qvPrice" style="font-weight: 600; color: #444; margin-bottom: 8px; font-size: 14px;"></p>
-                    <p id="qvDesc" style="color: #666; font-size: 13px; line-height: 1.4; margin-bottom: 5px;"></p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Product 1 -->
+            <div class="group cursor-pointer">
+                <div class="bg-[#EFECE6] rounded-2xl overflow-hiden h-72 mb-4 relative">
+                    <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=500&q=80" alt="Serum" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                    <span class="absolute top-3 left-3 bg-white/80 backdrop-blur-sm text-[10px] font-semibold px-2.5 py-1 rounded-full uppercase">Bestseller</span>
                 </div>
-                <div class="qv-footer">
-                    <button class="btn" id="qvAddBtn">Add to Bag</button>
+                <h3 class="font-serif font-medium text-neutral-800">Hydrating Botanical Serum</h3>
+                <p class="text-xs text-neutral-500 mt-0.5">Hyaluronic Acid & Niacinamide</p>
+                <p class="font-semibold text-sm mt-2 text-[#2D2A26]">$48.00</p>
+            </div>
+            <!-- Product 2 -->
+            <div class="group cursor-pointer">
+                <div class="bg-[#EFECE6] rounded-2xl overflow-hidden h-72 mb-4 relative">
+                    <img src="https://images.unsplash.com/photo-1608248597359-974254823122?auto=format&fit=crop&w=500&q=80" alt="Cream" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
                 </div>
+                <h3 class="font-serif font-medium text-neutral-800">Barrier Repair Moisturizer</h3>
+                <p class="text-xs text-neutral-500 mt-0.5">Ceramides & Peptides</p>
+                <p class="font-semibold text-sm mt-2 text-[#2D2A26]">$42.00</p>
+            </div>
+            <!-- Product 3 -->
+            <div class="group cursor-pointer">
+                <div class="bg-[#EFECE6] rounded-2xl overflow-hidden h-72 mb-4 relative">
+                    <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=500&q=80" alt="Cleanser" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                </div>
+                <h3 class="font-serif font-medium text-neutral-800">Gentle Gel Cleanser</h3>
+                <p class="text-xs text-neutral-500 mt-0.5">Green Tea & Chamomile</p>
+                <p class="font-semibold text-sm mt-2 text-[#2D2A26]">$28.00</p>
+            </div>
+            <!-- Product 4 -->
+            <div class="group cursor-pointer">
+                <div class="bg-[#EFECE6] rounded-2xl overflow-hidden h-72 mb-4 relative">
+                    <img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=500&q=80" alt="Sunscreen" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                    <span class="absolute top-3 left-3 bg-white/80 backdrop-blur-sm text-[10px] font-semibold px-2.5 py-1 rounded-full uppercase">New</span>
+                </div>
+                <h3 class="font-serif font-medium text-neutral-800">Daily Mineral Sunscreen SPF 50</h3>
+                <p class="text-xs text-neutral-500 mt-0.5">Invisible Zinc Shield</p>
+                <p class="font-semibold text-sm mt-2 text-[#2D2A26]">$36.00</p>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Real-time Reviews Modal -->
-    <div class="modal-overlay" id="reviewsModal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeReviewsModal()">&times;</button>
-            <h3 id="revProductTitle" style="font-family: 'Playfair Display', serif; margin-top: 0; font-size: 18px;">Customer Feedback</h3>
-            <p id="revProductContent" style="color: #555; font-size: 13px; line-height: 1.5; background: #f9f9f9; padding: 15px; border-radius: 6px; border: 1px solid #eee;"></p>
-        </div>
-    </div>
-
-    <!-- Slide-out Shopping Bag Drawer -->
-    <div class="cart-drawer" id="cartDrawer">
-        <div class="cart-header">
-            <span>Your Shopping Bag</span>
-            <button class="close-cart" onclick="toggleCart()">&times;</button>
-        </div>
-        
-        <div class="shipping-meter" id="shippingMeterText">
-            Add $50.00 more to unlock Free Worldwide Shipping!
-            <div class="progress-track">
-                <div class="progress-fill" id="shippingProgress"></div>
+    <!-- FOOTER -->
+    <footer class="bg-[#2D2A26] text-white py-12 px-6 mt-16">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-center md:text-left space-y-6 md:space-y-0">
+            <div>
+                <p class="font-serif text-xl tracking-wider uppercase font-bold">Lumina Skincare</p>
+                <p class="text-xs text-neutral-400 mt-1">Clean beauty for healthy, radiant skin.</p>
             </div>
+            <p class="text-xs text-neutral-400">© 2026 Lumina Skincare. All rights reserved.</p>
         </div>
-
-        <div class="cart-items" id="cartItemsContainer">
-            <p style="color: #777; text-align: center; margin-top: 30px; font-size: 13px;">Your bag is currently empty.</p>
-        </div>
-        
-        <div class="cart-footer">
-            <div class="cart-upsell" id="cartUpsellBox">
-                <div>
-                    <strong>Complete your routine:</strong><br>
-                    <span id="upsellText">Rosewater Mist ($22.00)</span>
-                </div>
-                <button class="btn" style="width: auto; padding: 5px 10px; font-size: 11px;" onclick="addToCart('Rosewater Calming Mist', 22.00)">Add</button>
-            </div>
-
-            <div class="promo-box">
-                <input type="text" id="promoInput" placeholder="Promo Code (RADIANCE)">
-                <button onclick="applyPromo()">Apply</button>
-            </div>
-
-            <div class="cart-total">
-                <span>Subtotal:</span>
-                <span id="cartSubtotal">$0.00</span>
-            </div>
-            <button class="btn" onclick="openCheckout()">Proceed to Checkout</button>
-        </div>
-    </div>
-
-    <div class="toast" id="toastNotification">✓ Added to your shopping bag!</div>
-
-    <!-- Checkout Form Modal with GCash/Maya Mock Integration -->
-    <div class="modal-overlay" id="checkoutModal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeCheckout()">&times;</button>
-            <h2 style="font-family: 'Playfair Display', serif; margin-top: 0; margin-bottom: 15px; font-size: 20px;">Secure Checkout</h2>
-            <form onsubmit="handleCheckoutSubmit(event)">
-                <h4 style="margin: 0 0 8px; font-size: 12px; text-transform: uppercase; border-bottom: 1px solid #eee; padding-bottom: 4px; color: #888;">Personal Info</h4>
-                <div class="form-group">
-                    <label>Full Name</label>
-                    <input type="text" id="custName" required placeholder="Rowel Mondigo">
-                </div>
-                <div class="form-group">
-                    <label>Email Address</label>
-                    <input type="email" required placeholder="rowel@example.com">
-                </div>
-                <div class="form-group">
-                    <label>Shipping Address</label>
-                    <input type="text" required placeholder="Pasig City, Metro Manila">
-                </div>
-
-                <h4 style="margin: 15px 0 8px; font-size: 12px; text-transform: uppercase; border-bottom: 1px solid #eee; padding-bottom: 4px; color: #888;">Payment Method</h4>
-                <div class="form-group">
-                    <label>Select Gateway</label>
-                    <select id="paymentMethodSelect" onchange="togglePaymentFields()">
-                        <option value="card">Credit / Debit Card</option>
-                        <option value="gcash">GCash (QR / Direct)</option>
-                        <option value="maya">Maya Wallet</option>
-                        <option value="cod">Cash on Delivery (COD)</option>
-                    </select>
-                </div>
-
-                <!-- Card Details Container -->
-                <div id="cardFieldsContainer">
-                    <div class="form-group">
-                        <label>Card Number</label>
-                        <input type="text" placeholder="4111 2222 3333 4444">
-                    </div>
-                    <div style="display: flex; gap: 8px;">
-                        <div class="form-group" style="flex: 1;">
-                            <label>Exp Date</label>
-                            <input type="text" placeholder="MM/YY">
-                        </div>
-                        <div class="form-group" style="flex: 1;">
-                            <label>CVV</label>
-                            <input type="password" placeholder="123">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- E-Wallet Details Container (GCash/Maya) -->
-                <div id="ewalletFieldsContainer" style="display: none;">
-                    <div style="background: #f5efe6; padding: 10px; border-radius: 6px; font-size: 12px; margin-bottom: 10px; text-align: center; border: 1px dashed #a67c52;">
-                        Scan QR or Send to: <strong>0917-888-1234</strong> (Lumina Skincare)<br>
-                        <span style="font-size: 10px; color: #666;">I-attach ang screenshot o reference number sa ibaba.</span>
-                    </div>
-                    <div class="form-group">
-                        <label>Reference Number / Ref ID</label>
-                        <input type="text" id="refNumberInput" placeholder="e.g. 10928347102">
-                    </div>
-                </div>
-
-                <button type="submit" class="btn" style="margin-top: 15px;">Complete Order</button>
-            </form>
-        </div>
-    </div>
-
-    <footer>
-        <p>&copy; 2026 Lumina Skincare Inc. All rights reserved. Designed for Professional Excellence.</p>
     </footer>
-
-    <!-- JavaScript Interactivity -->
-    <script>
-        let cart = [];
-        let discountApplied = false;
-        let currentCurrency = 'USD';
-        const phpRate = 56.00;
-        let activeOrders = {
-            "LUMINA-8841": "📦 Packed & Ready for Dispatch",
-            "LUMINA-1029": "🚚 Out for Delivery (Courier: J&T)",
-            "LUMINA-5520": "✨ Order Confirmed & Verified"
-        };
-
-        function formatPrice(usdAmount) {
-            if (currentCurrency === 'PHP') {
-                return '₱' + (usdAmount * phpRate).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
-            }
-            return '$' + usdAmount.toFixed(2);
-        }
-
-        function changeCurrency() {
-            currentCurrency = document.getElementById('currencySelect').value;
-            document.querySelectorAll('.product-card').forEach(card => {
-                let usdVal = parseFloat(card.querySelector('.price').getAttribute('data-usd'));
-                card.querySelector('.price').innerText = formatPrice(usdVal);
-            });
-            updateCartUI();
-        }
-
-        function showToast(message) {
-            const toast = document.getElementById('toastNotification');
-            toast.innerText = message;
-            toast.classList.add('show');
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 2800);
-        }
-
-        function addToCart(name, price) {
-            const existingItem = cart.find(item => item.name === name);
-            if (existingItem) {
-                existingItem.qty++;
-            } else {
-                cart.push({ name, price, qty: 1 });
-            }
-            updateCartUI();
-            showToast("✓ Added to Bag: " + name);
-        }
-
-        function changeQty(index, amount) {
-            cart[index].qty += amount;
-            if (cart[index].qty <= 0) {
-                cart.splice(index, 1);
-            }
-            updateCartUI();
-        }
-
-        function toggleCart() {
-            document.getElementById('cartDrawer').classList.toggle('open');
-        }
-
-        function applyPromo() {
-            const code = document.getElementById('promoInput').value.trim().toUpperCase();
-            if (code === "RADIANCE") {
-                if (!discountApplied) {
-                    discountApplied = true;
-                    showToast("🎉 Promo code applied! 15% OFF");
-                    updateCartUI();
-                } else {
-                    alert("Promo code is already applied.");
-                }
-            } else {
-                alert("Invalid promo code. Try typing: RADIANCE");
-            }
-        }
-
-        function updateCartUI() {
-            const container = document.getElementById('cartItemsContainer');
-            const counter = document.getElementById('cart-counter');
-            const subtotalEl = document.getElementById('cartSubtotal');
-            const shippingText = document.getElementById('shippingMeterText');
-            
-            let totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
-            counter.innerText = totalCount;
-
-            if (cart.length === 0) {
-                container.innerHTML = '<p style="color: #777; text-align: center; margin-top: 30px; font-size: 13px;">Your bag is currently empty.</p>';
-                subtotalEl.innerText = formatPrice(0);
-                let goalStr = formatPrice(50.00);
-                shippingText.innerHTML = `Add ${goalStr} more to unlock Free Shipping!<div class="progress-track"><div class="progress-fill" style="width: 0%"></div></div>`;
-                discountApplied = false;
-                return;
-            }
-
-            let html = '';
-            let rawTotal = 0;
-            cart.forEach((item, index) => {
-                rawTotal += item.price * item.qty;
-                html += `
-                    <div class="cart-item">
-                        <div style="flex: 1;">
-                            <strong>${item.name}</strong><br>
-                            <span style="color: #777;">${formatPrice(item.price)}</span>
-                            <div class="qty-controls">
-                                <button class="qty-btn" onclick="changeQty(${index}, -1)">-</button>
-                                <span>${item.qty}</span>
-                                <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
-                            </div>
-                        </div>
-                        <div style="font-weight: 600;">${formatPrice(item.price * item.qty)}</div>
-                    </div>
-                `;
-            });
-            container.innerHTML = html;
-
-            let goal = 50.00;
-            let percent = Math.min((rawTotal / goal) * 100, 100);
-            if (rawTotal >= goal) {
-                shippingText.innerHTML = `🎉 You've unlocked <strong>Free Shipping!</strong><div class="progress-track"><div class="progress-fill" style="width: 100%"></div></div>`;
-            } else {
-                let diffUsd = goal - rawTotal;
-                shippingText.innerHTML = `Add ${formatPrice(diffUsd)} more to unlock Free Shipping!<div class="progress-track"><div class="progress-fill" style="width: ${percent}%"></div></div>`;
-            }
-
-            let finalTotal = rawTotal;
-            if (discountApplied) {
-                let discountAmount = rawTotal * 0.15;
-                finalTotal = rawTotal - discountAmount;
-                subtotalEl.innerHTML = `<span style="text-decoration: line-through; color: #999; font-size: 13px; margin-right: 5px;">${formatPrice(rawTotal)}</span> ${formatPrice(finalTotal)} <span style="color: #a67c52; font-size: 11px; display: block;">(15% Discount Applied)</span>`;
-            } else {
-                subtotalEl.innerText = formatPrice(finalTotal);
-            }
-        }
-
-        function filterCategory(category, tabElement) {
-            document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
-            tabElement.classList.add('active');
-
-            let cards = document.querySelectorAll('.product-card');
-            cards.forEach(card => {
-                let cat = card.getAttribute('data-category');
-                if (category === 'all' || cat === category) {
-                    card.style.display = "flex";
-                } else {
-                    card.style.display = "none";
-                }
-            });
-        }
-
-        function openQuickView(name, price, image, desc) {
-            document.getElementById('qvImage').src = image;
-            document.getElementById('qvTitle').innerText = name;
-            document.getElementById('qvPrice').innerText = formatPrice(price);
-            document.getElementById('qvDesc').innerText = desc;
-            document.getElementById('qvAddBtn').onclick = function() {
-                addToCart(name, price);
-                closeQuickView();
-            };
-            document.getElementById('quickViewModal').classList.add('active');
-        }
-
-        function closeQuickView() {
-            document.getElementById('quickViewModal').classList.remove('active');
-        }
-
-        function openReviewsModal(productName, reviewText) {
-            document.getElementById('revProductTitle').innerText = productName + ' - Reviews';
-            document.getElementById('revProductContent').innerText = reviewText;
-            document.getElementById('reviewsModal').classList.add('active');
-        }
-
-        function closeReviewsModal() {
-            document.getElementById('reviewsModal').classList.remove('active');
-        }
-
-        function handleNewsletter(event) {
-            event.preventDefault();
-            showToast("🎉 Success! Check your email for the 10% discount code.");
-            document.getElementById('vipEmailInput').value = '';
-        }
-
-        function toggleFaq(button) {
-            const item = button.parentElement;
-            item.classList.toggle('active');
-            const icon = button.querySelector('span:last-child');
-            icon.innerText = item.classList.contains('active') ? '-' : '+';
-        }
-
-        function togglePaymentFields() {
-            const method = document.getElementById('paymentMethodSelect').value;
-            const cardBox = document.getElementById('cardFieldsContainer');
-            const ewalletBox = document.getElementById('ewalletFieldsContainer');
-
-            if (method === 'gcash' || method === 'maya') {
-                cardBox.style.display = 'none';
-                ewalletBox.style.display = 'block';
-            } else if (method === 'cod') {
-                cardBox.style.display = 'none';
-                ewalletBox.style.display = 'none';
-            } else {
-                cardBox.style.display = 'block';
-                ewalletBox.style.display = 'none';
-            }
-        }
-
-        function openCheckout() {
-            if (cart.length === 0) {
-                alert("Your bag is empty. Please add items before checking out.");
-                return;
-            }
-            toggleCart();
-            document.getElementById('checkoutModal').classList.add('active');
-        }
-
-        function closeCheckout() {
-            document.getElementById('checkoutModal').classList.remove('active');
-        }
-
-        function handleCheckoutSubmit(event) {
-            event.preventDefault();
-            const randomId = 'LUMINA-' + Math.floor(10000 + Math.random() * 90000);
-            activeOrders[randomId] = "✨ Order Processed Successfully & Paid";
-            
-            alert(`Order Placed Successfully!\n\nYour Order ID is: ${randomId}\nPwede mo itong i-type sa Order Tracking box sa taas para makita ang status.`);
-            
-            cart = [];
-            discountApplied = false;
-            updateCartUI();
-            closeCheckout();
-        }
-
-        function trackOrder() {
-            const queryId = document.getElementById('trackInput').value.trim().toUpperCase();
-            const resultEl = document.getElementById('trackingResultText');
-
-            if (!queryId) {
-                resultEl.innerHTML = "<span style='color: #e74c3c;'>Maglagay ng Order ID.</span>";
-                return;
-            }
-
-            if (activeOrders[queryId]) {
-                resultEl.innerHTML = `<span style='color: #2ecc71;'><strong>${queryId}:</strong> ${activeOrders[queryId]}</span>`;
-            } else {
-                resultEl.innerHTML = `<span style='color: #e74c3c;'>Walang nahanap. Subukan: LUMINA-8841</span>`;
-            }
-        }
-
-        function filterProducts() {
-            let input = document.getElementById('searchInput').value.toLowerCase();
-            let cards = document.querySelectorAll('.product-card');
-
-            cards.forEach(card => {
-                let name = card.getAttribute('data-name').toLowerCase();
-                if (name.includes(input)) {
-                    card.style.display = "flex";
-                } else {
-                    card.style.display = "none";
-                }
-            });
-        }
-    </script>
 
 </body>
 </html>
